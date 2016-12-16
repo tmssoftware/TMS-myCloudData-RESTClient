@@ -1,0 +1,12 @@
+diff a/REST.TMS.myCloudDataRestClient.Data.pas b/REST.TMS.myCloudDataRestClient.Data.pas	(rejected hunks)
+@@ -448,8 +448,8 @@
+ 
+   TMyCloudDataTables = class(TMyCloudDataModelList<TMyCloudDataTable>)
+   private
+-    function LoadItems(): TObjectList<TMyCloudDataTable>;
+-    function TryParseJSON(AJSONString: string; out AResult: TObjectList<TMyCloudDataTable>): boolean;
++    procedure LoadItems;
++    function TryParseJSON(AJSONString: string): boolean;
+   public
+     constructor Create(AOwner: TCustomMyCloudDataRESTClient); override;
+     function CreateTable(ATableName: string): TMyCloudDataTable;

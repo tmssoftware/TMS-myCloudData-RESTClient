@@ -1,0 +1,51 @@
+object frm_OAuthWebForm: Tfrm_OAuthWebForm
+  Left = 0
+  Top = 0
+  Caption = 'Form23'
+  ClientHeight = 567
+  ClientWidth = 384
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [dkDesktop]
+  OnCreate = FormCreate
+  OnClose = FormClose
+  DesignerMobile = True
+  DesignerWidth = 384
+  DesignerHeight = 592
+  DesignerDeviceName = 'Google Nexus 4'
+  DesignerOrientation = 0
+  DesignerOSVersion = ''
+  object Layout1: TLayout
+    Align = alTop
+    Height = 41.000000000000000000
+    Width = 384.000000000000000000
+  end
+  object Layout2: TLayout
+    Align = alBottom
+    Height = 50.000000000000000000
+    Position.Y = 517.000000000000000000
+    Width = 384.000000000000000000
+    object btn_Close: TButton
+      Anchors = [akRight, akBottom]
+      Height = 44.000000000000000000
+      Position.X = 256.000000000000000000
+      TabOrder = 0
+      Text = '&Close'
+      Trimming = ttCharacter
+      Width = 121.000000000000000000
+      OnClick = btn_CloseClick
+    end
+  end
+  object Layout3: TLayout
+    Align = alClient
+    Height = 476.000000000000000000
+    Width = 384.000000000000000000
+    object WebBrowser: TWebBrowser
+      Align = alClient
+      Height = 476.000000000000000000
+      Width = 384.000000000000000000
+      OnDidFinishLoad = WebBrowserDidFinishLoad
+      OnShouldStartLoadWithRequest = WebBrowserShouldStartLoadWithRequest
+    end
+  end
+end

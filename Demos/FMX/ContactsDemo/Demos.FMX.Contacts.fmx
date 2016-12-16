@@ -1,0 +1,326 @@
+object ContactsDemoForm: TContactsDemoForm
+  Left = 0
+  Top = 0
+  Caption = 'MyCloudData - FMX Contacts DEMO application'
+  ClientHeight = 505
+  ClientWidth = 822
+  Position = Designed
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object DetailsGroupBox: TGroupBox
+    Position.X = 265.000000000000000000
+    Position.Y = 128.000000000000000000
+    Size.Width = 288.000000000000000000
+    Size.Height = 361.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Contact details'
+    TabOrder = 5
+    object EmailTextBox: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 1
+      Position.X = 16.000000000000000000
+      Position.Y = 96.000000000000000000
+      Size.Width = 257.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object DeleteContactButton: TButton
+      Position.X = 193.000000000000000000
+      Position.Y = 312.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 7
+      Text = 'Delete'
+      OnClick = DeleteContactButtonClick
+    end
+    object AddContactButton: TButton
+      Position.X = 17.000000000000000000
+      Position.Y = 312.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 5
+      Text = 'Add'
+      OnClick = AddContactButtonClick
+    end
+    object BirthDatePicker: TDateEdit
+      Date = 42710.000000000000000000
+      Position.X = 16.000000000000000000
+      Position.Y = 208.000000000000000000
+      Size.Width = 257.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+    end
+    object NameTextBox: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 0
+      Position.X = 16.000000000000000000
+      Position.Y = 40.000000000000000000
+      Size.Width = 257.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object UpdateContactButton: TButton
+      Position.X = 105.000000000000000000
+      Position.Y = 312.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 6
+      Text = 'Update'
+      OnClick = UpdateContactButtonClick
+    end
+    object GenderSelectRadioGroup: TGroupBox
+      Position.X = 16.000000000000000000
+      Position.Y = 128.000000000000000000
+      Size.Width = 257.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Gender'
+      TabOrder = 2
+      object GenderSelectMaleRadioButton: TRadioButton
+        GroupName = 'GenderSelect'
+        Position.X = 17.000000000000000000
+        Position.Y = 22.000000000000000000
+        Size.Width = 56.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'Male'
+      end
+      object GenderSelectFemaleRadioButton: TRadioButton
+        GroupName = 'GenderSelect'
+        Position.X = 89.000000000000000000
+        Position.Y = 22.000000000000000000
+        Size.Width = 88.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'Female'
+      end
+    end
+    object NameLabel: TLabel
+      Position.X = 16.000000000000000000
+      Position.Y = 16.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Name'
+    end
+    object EmailLabel: TLabel
+      Position.X = 16.000000000000000000
+      Position.Y = 72.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Email'
+    end
+    object BirthDateLabel: TLabel
+      Position.X = 16.000000000000000000
+      Position.Y = 184.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Date of birth'
+    end
+    object RelationShipGroupBox: TGroupBox
+      Position.X = 16.000000000000000000
+      Position.Y = 240.000000000000000000
+      Size.Width = 257.000000000000000000
+      Size.Height = 57.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Relationship'
+      TabOrder = 4
+      object IsFriendCheckbox: TCheckBox
+        Position.X = 17.000000000000000000
+        Position.Y = 25.000000000000000000
+        TabOrder = 0
+        Text = 'Friend'
+      end
+    end
+  end
+  object DisconnectButton: TButton
+    Position.X = 136.000000000000000000
+    Position.Y = 16.000000000000000000
+    Size.Width = 97.000000000000000000
+    Size.Height = 33.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Text = 'Disconnect'
+    OnClick = DisconnectButtonClick
+  end
+  object ConnectButton: TButton
+    Position.X = 24.000000000000000000
+    Position.Y = 16.000000000000000000
+    Size.Width = 97.000000000000000000
+    Size.Height = 33.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Text = 'Connect'
+    OnClick = ConnectButtonClick
+  end
+  object ContactListGroupBox: TGroupBox
+    Position.X = 24.000000000000000000
+    Position.Y = 128.000000000000000000
+    Size.Width = 233.000000000000000000
+    Size.Height = 361.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'My contacts'
+    TabOrder = 4
+    object ContactsListBox: TListBox
+      Position.X = 8.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 217.000000000000000000
+      Size.Height = 321.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      OnClick = ContactsListBoxClick
+      DisableFocusEffect = True
+      DefaultItemStyles.ItemStyle = ''
+      DefaultItemStyles.GroupHeaderStyle = ''
+      DefaultItemStyles.GroupFooterStyle = ''
+      OnChange = ContactsListBoxClick
+      Viewport.Width = 213.000000000000000000
+      Viewport.Height = 317.000000000000000000
+    end
+  end
+  object PictureGroupBox: TGroupBox
+    Position.X = 558.000000000000000000
+    Position.Y = 128.000000000000000000
+    Size.Width = 243.000000000000000000
+    Size.Height = 361.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Contact image'
+    TabOrder = 6
+    object PictureOpenDialog: TOpenDialog
+      Left = 720
+      Top = 24
+    end
+    object InsertPictureButton: TButton
+      Position.X = 17.000000000000000000
+      Position.Y = 312.000000000000000000
+      Size.Width = 88.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Insert Picture'
+      OnClick = InsertPictureButtonClick
+    end
+    object RemovePictureButton: TButton
+      Enabled = False
+      Position.X = 121.000000000000000000
+      Position.Y = 312.000000000000000000
+      Size.Width = 104.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Remove Picture'
+      OnClick = RemovePictureButtonClick
+    end
+    object ContactImage: TImage
+      MultiResBitmap = <
+        item
+        end>
+      Position.X = 8.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 225.000000000000000000
+      Size.Height = 273.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object BlobsNotEnabledWarning: TLabel
+      StyledSettings = [Family]
+      Position.X = 16.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 217.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 10.000000000000000000
+      TextSettings.Font.StyleExt = {00040000000200000004000000}
+      TextSettings.FontColor = claDimgray
+      Text = 'Blob fields are not available for free accounts.'
+    end
+  end
+  object GenderFilterRadioGroup: TGroupBox
+    Position.X = 24.000000000000000000
+    Position.Y = 64.000000000000000000
+    Size.Width = 233.000000000000000000
+    Size.Height = 57.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Filter by gender'
+    TabOrder = 7
+    object GenderFilterMaleRadioButton: TRadioButton
+      GroupName = 'GenderFilter'
+      Position.X = 78.000000000000000000
+      Position.Y = 23.000000000000000000
+      Size.Width = 67.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Male'
+      OnChange = GenderFilterRadioOnChange
+    end
+    object GenderFilterFemaleRadioButton: TRadioButton
+      GroupName = 'GenderFilter'
+      Position.X = 9.000000000000000000
+      Position.Y = 23.000000000000000000
+      Size.Width = 64.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Female'
+      OnChange = GenderFilterRadioOnChange
+    end
+    object GenderFilterAllRadioButton: TRadioButton
+      GroupName = 'GenderFilter'
+      Position.X = 147.000000000000000000
+      Position.Y = 23.000000000000000000
+      Size.Width = 46.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'All'
+      OnChange = GenderFilterRadioOnChange
+    end
+  end
+  object ConnectedAsLabel: TLabel
+    StyledSettings = [Family, Style, FontColor]
+    Position.X = 256.000000000000000000
+    Position.Y = 16.000000000000000000
+    TextSettings.Font.Size = 10.000000000000000000
+    Text = 'Connected As :'
+  end
+  object ConnectedAsValueLabel: TLabel
+    StyledSettings = [Family, FontColor]
+    Position.X = 328.000000000000000000
+    Position.Y = 17.000000000000000000
+    Size.Width = 265.000000000000000000
+    Size.Height = 14.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 10.000000000000000000
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+    Text = 'not connected'
+  end
+  object AccountTypeLabel: TLabel
+    StyledSettings = [Family, Style, FontColor]
+    Position.X = 256.000000000000000000
+    Position.Y = 32.000000000000000000
+    TextSettings.Font.Size = 10.000000000000000000
+    Text = 'Account type :'
+  end
+  object AccountTypeValueLabel: TLabel
+    StyledSettings = [Family, FontColor]
+    Position.X = 328.000000000000000000
+    Position.Y = 33.000000000000000000
+    Size.Width = 265.000000000000000000
+    Size.Height = 14.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 10.000000000000000000
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+    Text = 'not connected'
+  end
+end

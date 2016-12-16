@@ -1,0 +1,84 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{70CDB392-4CF3-4ADA-B5A6-313BE0122B1A}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="REST.TMSMyCloudDataRestClient.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="FMX.MyCloudDataRestClient.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="VCL.TMSMyCloudDataRestClient.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Demos\VCL\ContactsDemo\Demos.VCL.Contacts.Project.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Demos\FMX\ContactsDemo\Demos.FMX.Contacts.Project.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="REST_TMSMyCloudDataRestClient">
+        <MSBuild Projects="REST.TMSMyCloudDataRestClient.dproj"/>
+    </Target>
+    <Target Name="REST_TMSMyCloudDataRestClient:Clean">
+        <MSBuild Projects="REST.TMSMyCloudDataRestClient.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="REST_TMSMyCloudDataRestClient:Make">
+        <MSBuild Projects="REST.TMSMyCloudDataRestClient.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="FMX_MyCloudDataRestClient">
+        <MSBuild Projects="FMX.MyCloudDataRestClient.dproj"/>
+    </Target>
+    <Target Name="FMX_MyCloudDataRestClient:Clean">
+        <MSBuild Projects="FMX.MyCloudDataRestClient.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FMX_MyCloudDataRestClient:Make">
+        <MSBuild Projects="FMX.MyCloudDataRestClient.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="VCL_TMSMyCloudDataRestClient">
+        <MSBuild Projects="VCL.TMSMyCloudDataRestClient.dproj"/>
+    </Target>
+    <Target Name="VCL_TMSMyCloudDataRestClient:Clean">
+        <MSBuild Projects="VCL.TMSMyCloudDataRestClient.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VCL_TMSMyCloudDataRestClient:Make">
+        <MSBuild Projects="VCL.TMSMyCloudDataRestClient.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Demos_VCL_Contacts_Project">
+        <MSBuild Projects="Demos\VCL\ContactsDemo\Demos.VCL.Contacts.Project.dproj"/>
+    </Target>
+    <Target Name="Demos_VCL_Contacts_Project:Clean">
+        <MSBuild Projects="Demos\VCL\ContactsDemo\Demos.VCL.Contacts.Project.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Demos_VCL_Contacts_Project:Make">
+        <MSBuild Projects="Demos\VCL\ContactsDemo\Demos.VCL.Contacts.Project.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Demos_FMX_Contacts_Project">
+        <MSBuild Projects="Demos\FMX\ContactsDemo\Demos.FMX.Contacts.Project.dproj"/>
+    </Target>
+    <Target Name="Demos_FMX_Contacts_Project:Clean">
+        <MSBuild Projects="Demos\FMX\ContactsDemo\Demos.FMX.Contacts.Project.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Demos_FMX_Contacts_Project:Make">
+        <MSBuild Projects="Demos\FMX\ContactsDemo\Demos.FMX.Contacts.Project.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="REST_TMSMyCloudDataRestClient;FMX_MyCloudDataRestClient;VCL_TMSMyCloudDataRestClient;Demos_VCL_Contacts_Project;Demos_FMX_Contacts_Project"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="REST_TMSMyCloudDataRestClient:Clean;FMX_MyCloudDataRestClient:Clean;VCL_TMSMyCloudDataRestClient:Clean;Demos_VCL_Contacts_Project:Clean;Demos_FMX_Contacts_Project:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="REST_TMSMyCloudDataRestClient:Make;FMX_MyCloudDataRestClient:Make;VCL_TMSMyCloudDataRestClient:Make;Demos_VCL_Contacts_Project:Make;Demos_FMX_Contacts_Project:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
