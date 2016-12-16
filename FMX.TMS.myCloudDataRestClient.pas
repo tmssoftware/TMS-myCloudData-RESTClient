@@ -33,7 +33,7 @@ type
     procedure Authenticate; override;
   end;
 
-  MyCloudDataBlobClassHelper = class helper for TMyCloudDataBlob
+  MyCloudDataBlobClassHelper = class helper for TmyCloudDataBlob
   public
     function TryGetAsBitmap(out ABitmap: TBitmap): Boolean;
   end;

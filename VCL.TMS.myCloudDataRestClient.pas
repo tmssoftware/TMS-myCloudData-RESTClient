@@ -34,7 +34,7 @@ type
     procedure Authenticate; override;
   end;
 
-  TMyCloudDataBlobClassHelper = class helper for TMyCloudDataBlob
+  TmyCloudDataBlobClassHelper = class helper for TmyCloudDataBlob
   private
     function FindGraphicClass(const Buffer; const BufferSize: Int64; out GraphicClass: TGraphicClass): Boolean;
   public
@@ -67,11 +67,11 @@ begin
   end;
 end;
 
-{ TMyCloudDataBlobClassHelper }
+{ TmyCloudDataBlobClassHelper }
 const
   MinGraphicSize = 40;
 
-function TMyCloudDataBlobClassHelper.FindGraphicClass(const Buffer; const BufferSize: Int64; out GraphicClass: TGraphicClass): Boolean;
+function TmyCloudDataBlobClassHelper.FindGraphicClass(const Buffer; const BufferSize: Int64; out GraphicClass: TGraphicClass): Boolean;
 var
   LongWords: array [Byte] of LongWord absolute Buffer;
   Words: array [Byte] of Word absolute Buffer;
@@ -107,7 +107,7 @@ begin
   Result := (GraphicClass <> nil);
 end;
 
-function TMyCloudDataBlobClassHelper.TryGetAsGraphic(out AGraphic: TGraphic): Boolean;
+function TmyCloudDataBlobClassHelper.TryGetAsGraphic(out AGraphic: TGraphic): Boolean;
 var
   Buffer: PByte;
   LStream: TStream;

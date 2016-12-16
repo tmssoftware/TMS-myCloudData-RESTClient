@@ -37,42 +37,42 @@ type
   TCustomMyCloudDataRESTClient = class;
 
   // Model base classes
-  TMyCloudDataModelBase = class;
-  TMyCloudDataModelCollectionBase<T: class> = class;
+  TmyCloudDataModelBase = class;
+  TmyCloudDataModelCollectionBase<T: class> = class;
 
   // Model classes
-  TMyCloudDataBlob = class;
-  TMyCloudDataEntities = class;
-  TMyCloudDataEntity = class;
-  TMyCloudDataEntityFilter = class;
-  TMyCloudDataEntityFilters = class;
-  TMyCloudDataEntityQuery = class;
-  TMyCloudDataEntityQueryResult = class;
-  TMyCloudDataEntitySorting = class;
-  TMyCloudDataEntitySortingCollection = class;
-  TMyCloudDataField = class;
-  TMyCloudDataFieldMetaData = class;
-  TMyCloudDataFields = class;
-  TMyCloudDataLookupData = class;
-  TMyCloudDataLookupDataCollection = class;
-  TMyCloudDataTable = class;
-  TMyCloudDataPermissions = class;
-  TMyCloudDataTables = class;
-  TMyCloudDataTableShare = class;
-  TMyCloudDataTableShares = class;
-  TMyCloudDataUser = class;
+  TmyCloudDataBlob = class;
+  TmyCloudDataEntities = class;
+  TmyCloudDataEntity = class;
+  TmyCloudDataEntityFilter = class;
+  TmyCloudDataEntityFilters = class;
+  TmyCloudDataEntityQuery = class;
+  TmyCloudDataEntityQueryResult = class;
+  TmyCloudDataEntitySorting = class;
+  TmyCloudDataEntitySortingCollection = class;
+  TmyCloudDataField = class;
+  TmyCloudDataFieldMetaData = class;
+  TmyCloudDataFields = class;
+  TmyCloudDataLookupData = class;
+  TmyCloudDataLookupDataCollection = class;
+  TmyCloudDataTable = class;
+  TmyCloudDataPermissions = class;
+  TmyCloudDataTables = class;
+  TmyCloudDataTableShare = class;
+  TmyCloudDataTableShares = class;
+  TmyCloudDataUser = class;
 
   { ------------------------------------------------------------------------- }
 
   TCustomMyCloudDataRESTClient = class(TRESTClient)
   private
     FRequest: TRESTRequest;
-    FTables: TMyCloudDataTables;
-    function GetTables: TMyCloudDataTables;
+    FTables: TmyCloudDataTables;
+    function GetTables: TmyCloudDataTables;
   protected
-    FCurrentUser: TMyCloudDataUser;
+    FCurrentUser: TmyCloudDataUser;
     FIsConnected: Boolean;
-    function GetTable(ATableId: integer): TMyCloudDataTable;
+    function GetTable(ATableId: integer): TmyCloudDataTable;
     property Request: TRESTRequest read FRequest;
     function GetHttpClient: TRESTHTTP;
     procedure EnsureConnectedState; virtual;
@@ -82,11 +82,11 @@ type
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
     property IsConnected: Boolean read FIsConnected;
-    property CurrentUser: TMyCloudDataUser read FCurrentUser;
-    property Tables: TMyCloudDataTables read GetTables;
+    property CurrentUser: TmyCloudDataUser read FCurrentUser;
+    property Tables: TmyCloudDataTables read GetTables;
   end;
 
-  TMyCloudDataModelBase = class abstract(TPersistent)
+  TmyCloudDataModelBase = class abstract(TPersistent)
   private
     FOwner: TCustomMyCloudDataRESTClient;
   public
@@ -94,17 +94,17 @@ type
     property Owner: TCustomMyCloudDataRESTClient read FOwner;
   end;
 
-  TMyCloudDataUserType = (utFree, utSubscription, utAdmin);
+  TmyCloudDataUserType = (utFree, utSubscription, utAdmin);
 
-  TMyCloudDataUser = class(TPersistent)
+  TmyCloudDataUser = class(TPersistent)
   private
     FUserId: integer;
     FFirstName: string;
     FLastName: string;
     FEmail: string;
     FCompany: string;
-    FUserType: TMyCloudDataUserType;
-    FPermissions: TMyCloudDataPermissions;
+    FUserType: TmyCloudDataUserType;
+    FPermissions: TmyCloudDataPermissions;
   public
     destructor Destroy; override;
     function CanUseBlobFields: Boolean;
@@ -114,12 +114,12 @@ type
     property Email: string read FEmail;
     property FirstName: string read FFirstName;
     property Lastname: string read FLastName;
-    property Permission: TMyCloudDataPermissions read FPermissions;
+    property Permission: TmyCloudDataPermissions read FPermissions;
     property UserId: integer read FUserId;
-    property UserType: TMyCloudDataUserType read FUserType;
+    property UserType: TmyCloudDataUserType read FUserType;
   end;
 
-  TMyCloudDataModelCollectionBase<T: class> = class abstract(TMyCloudDataModelBase)
+  TmyCloudDataModelCollectionBase<T: class> = class abstract(TmyCloudDataModelBase)
   private
     FItems: TObjectList<T>;
     function GetItem(i: integer): T;
@@ -137,11 +137,11 @@ type
     property Count: integer read GetItemCount;
   end;
 
-  TMyCloudDataFieldDataType = (ftInteger, ftFloat, ftWideString, ftBoolean, ftDateTime, ftDate, ftTime, ftBlob);
+  TmyCloudDataFieldDataType = (ftInteger, ftFloat, ftWideString, ftBoolean, ftDateTime, ftDate, ftTime, ftBlob);
 
-  TMyCloudDataFieldMetaTypedField = (tfNone, tfRadioButton, tfComboBox, tfCheckBox);
+  TmyCloudDataFieldMetaTypedField = (tfNone, tfRadioButton, tfComboBox, tfCheckBox);
 
-  TMyCloudDataFieldMetaData = class(TObject)
+  TmyCloudDataFieldMetaData = class(TObject)
   private
     FEnabled: Boolean;
     FLabelText: string;
@@ -158,7 +158,7 @@ type
     FDescription: string;
     FMinimum: double;
     FTypedValues: TDictionary<string, string>;
-    FTypedField: TMyCloudDataFieldMetaTypedField;
+    FTypedField: TmyCloudDataFieldMetaTypedField;
     FDefaultValue: string;
     FRequired: Boolean;
   public
@@ -179,24 +179,24 @@ type
     property MinimumDate: TDatetime read FMinimumDate write FMinimumDate;
     property Order: integer read FOrder write FOrder;
     property Required: Boolean read FRequired write FRequired;
-    property TypedField: TMyCloudDataFieldMetaTypedField read FTypedField write FTypedField;
+    property TypedField: TmyCloudDataFieldMetaTypedField read FTypedField write FTypedField;
     property TypedValues: TDictionary<string, string> read FTypedValues write FTypedValues;
     property Visible: Boolean read FVisible write FVisible;
     property Width: integer read FWidth write FWidth;
   end;
 
-  TMyCloudDataField = class(TObject)
+  TmyCloudDataField = class(TObject)
   private
     FTableID: integer;
     FFieldName: string;
     FOriginalFieldName: string;
-    FDataType: TMyCloudDataFieldDataType;
+    FDataType: TmyCloudDataFieldDataType;
     FIsNullable: Boolean;
     FMaxFieldSize: integer;
-    FMetaData: TMyCloudDataFieldMetaData;
+    FMetaData: TmyCloudDataFieldMetaData;
     function CheckForExtraMetaData: Boolean;
-    function StringToDataType(AString: string): TMyCloudDataFieldDataType; virtual;
-    function DataTypeToString(ADataType: TMyCloudDataFieldDataType): string; virtual;
+    function StringToDataType(AString: string): TmyCloudDataFieldDataType; virtual;
+    function DataTypeToString(ADataType: TmyCloudDataFieldDataType): string; virtual;
   protected
     function FromJSON(AJSONString: string): Boolean;
     function ToJSON(AIsNew: Boolean): string;
@@ -204,37 +204,37 @@ type
   public
     constructor Create(ATableId: integer);
     destructor Destroy; override;
-    function CompareBasicFields(AOtherField: TMyCloudDataField): Boolean;
-    function CompareExtraMetaData(AOtherField: TMyCloudDataField): Boolean;
-    property DataType: TMyCloudDataFieldDataType read FDataType write FDataType;
+    function CompareBasicFields(AOtherField: TmyCloudDataField): Boolean;
+    function CompareExtraMetaData(AOtherField: TmyCloudDataField): Boolean;
+    property DataType: TmyCloudDataFieldDataType read FDataType write FDataType;
     property FieldName: string read FFieldName write FFieldName;
     property HasExtraMetaData: Boolean read CheckForExtraMetaData;
     property IsNullable: Boolean read FIsNullable write FIsNullable;
     property MaxFieldSize: integer read FMaxFieldSize write FMaxFieldSize;
-    property MetaData: TMyCloudDataFieldMetaData read FMetaData write FMetaData;
+    property MetaData: TmyCloudDataFieldMetaData read FMetaData write FMetaData;
     property OriginalFieldName: string read FOriginalFieldName;
     property TableID: integer read FTableID;
   end;
 
-  TMyCloudDataFields = class(TMyCloudDataModelCollectionBase<TMyCloudDataField>)
+  TmyCloudDataFields = class(TmyCloudDataModelCollectionBase<TmyCloudDataField>)
   private
     FTableID: integer;
   protected
-    function LoadItems: TObjectList<TMyCloudDataField>; override;
-    function TryParseJSON(AJSONString: string; out AResult: TObjectList<TMyCloudDataField>): Boolean;
+    function LoadItems: TObjectList<TmyCloudDataField>; override;
+    function TryParseJSON(AJSONString: string; out AResult: TObjectList<TmyCloudDataField>): Boolean;
   public
     constructor Create(AOwner: TCustomMyCloudDataRESTClient; ATableId: integer); reintroduce; overload;
-    function Add(AFieldName: string; ADataType: TMyCloudDataFieldDataType): TMyCloudDataField; overload;
-    function Add(AFieldName: string; ADataType: TMyCloudDataFieldDataType; AFieldSize: integer): TMyCloudDataField; overload;
-    function AddOrUpdate(AFieldName: string; ADataType: TMyCloudDataFieldDataType): TMyCloudDataField; overload;
-    function AddOrUpdate(AFieldName: string; ADataType: TMyCloudDataFieldDataType; AFieldSize: integer): TMyCloudDataField; overload;
-    function GetByName(AFieldName: string): TMyCloudDataField;
-    function GetByOriginalName(AOriginalFieldName: string): TMyCloudDataField;
+    function Add(AFieldName: string; ADataType: TmyCloudDataFieldDataType): TmyCloudDataField; overload;
+    function Add(AFieldName: string; ADataType: TmyCloudDataFieldDataType; AFieldSize: integer): TmyCloudDataField; overload;
+    function AddOrUpdate(AFieldName: string; ADataType: TmyCloudDataFieldDataType): TmyCloudDataField; overload;
+    function AddOrUpdate(AFieldName: string; ADataType: TmyCloudDataFieldDataType; AFieldSize: integer): TmyCloudDataField; overload;
+    function GetByName(AFieldName: string): TmyCloudDataField;
+    function GetByOriginalName(AOriginalFieldName: string): TmyCloudDataField;
     procedure Save;
     property TableID: integer read FTableID;
   end;
 
-  TMyCloudDataBlob = class(TMyCloudDataModelBase)
+  TmyCloudDataBlob = class(TmyCloudDataModelBase)
   private
     FHasData: Boolean;
     FUrl: string;
@@ -250,29 +250,29 @@ type
     property Stream: TStream read GetStream write SetStream;
   end;
 
-  TMyCloudDataJSonHelper = class
+  TmyCloudDataJSonHelper = class
   public
     class function TryGetJSonProperty<T>(AJSonValue: TJSONValue; APath: string; ADefaultValue: T): T; overload;
     class function TryGetJSonProperty<T>(AJSonValue: TJSONValue; APath: string): T; overload;
     class function TryParseBooleanFieldValue(ASource: string; out AResult: Variant): Boolean;
     class function TryParseDateTimeFieldValue(ASource: string; out AResult: Variant): Boolean;
-    class function TryParseFieldValue(ASource: string; ADataType: TMyCloudDataFieldDataType; out AResult: Variant): Boolean;
+    class function TryParseFieldValue(ASource: string; ADataType: TmyCloudDataFieldDataType; out AResult: Variant): Boolean;
     class function TryParseFloatFieldValue(ASource: string; out AResult: Variant): Boolean;
     class function TryParseIntegerFieldValue(ASource: string; out AResult: Variant): Boolean;
     class function TrySerializeBooleanFieldValue(AValue: Variant; out AStringResult: string): Boolean;
     class function TrySerializeDateTimeFieldValue(AValue: Variant; out AStringResult: string): Boolean;
-    class function TrySerializeFieldValue(AValue: Variant; ADataType: TMyCloudDataFieldDataType; out AStringResult: string): Boolean;
+    class function TrySerializeFieldValue(AValue: Variant; ADataType: TmyCloudDataFieldDataType; out AStringResult: string): Boolean;
     class function TrySerializeFloatFieldValue(AValue: Variant; out AStringResult: string): Boolean;
     class function TrySerializeIntegerFieldValue(AValue: Variant; out AStringResult: string): Boolean;
     class function TrySerializeStringFieldValue(AValue: Variant; out AStringResult: string): Boolean;
     class function IntToZStr(i, l: integer): string;
   end;
 
-  TMyCloudDataEntity = class(TMyCloudDataModelBase)
+  TmyCloudDataEntity = class(TmyCloudDataModelBase)
   private
-    FBlobValues: TObjectDictionary<string, TMyCloudDataBlob>;
+    FBlobValues: TObjectDictionary<string, TmyCloudDataBlob>;
     FEntityId: int64;
-    FFields: TMyCloudDataFields;
+    FFields: TmyCloudDataFields;
     FHasUnsavedChanges: Boolean;
     FTableID: integer;
     FValues: TDictionary<string, Variant>;
@@ -280,12 +280,12 @@ type
     function GetIsNew: Boolean;
 
   protected
-    function FromJSON(AJSONString: string; AFieldCollection: TMyCloudDataFields): Boolean;
+    function FromJSON(AJSONString: string; AFieldCollection: TmyCloudDataFields): Boolean;
     function ToJSON: string;
   public
-    constructor Create(AOwner: TCustomMyCloudDataRESTClient; ATableId: integer; AFieldSet: TMyCloudDataFields); reintroduce; overload;
+    constructor Create(AOwner: TCustomMyCloudDataRESTClient; ATableId: integer; AFieldSet: TmyCloudDataFields); reintroduce; overload;
     destructor Destroy; override;
-    function GetBlobField(AFieldName: string): TMyCloudDataBlob;
+    function GetBlobField(AFieldName: string): TmyCloudDataBlob;
     function GetValue(AFieldName: string): Variant;
     function GetValueAsString(AFieldName: string): string;
     function TrySetValueFromString(AFieldName: string; AValue: string): Boolean;
@@ -296,18 +296,18 @@ type
     property TableID: integer read FTableID;
   end;
 
-  TMyCloudDataEntities = class(TMyCloudDataModelCollectionBase<TMyCloudDataEntity>)
+  TmyCloudDataEntities = class(TmyCloudDataModelCollectionBase<TmyCloudDataEntity>)
   private
     FTableID: integer;
-    FFieldCollection: TMyCloudDataFields;
+    FFieldCollection: TmyCloudDataFields;
     FRemovedEntities: TList<int64>;
   protected
     function FromJSON(AJSONString: string): Boolean;
   public
-    constructor Create(AOwner: TCustomMyCloudDataRESTClient; ATableId: integer; AFieldCollection: TMyCloudDataFields); reintroduce; overload;
+    constructor Create(AOwner: TCustomMyCloudDataRESTClient; ATableId: integer; AFieldCollection: TmyCloudDataFields); reintroduce; overload;
     destructor Destroy; override;
-    function CreateEntity: TMyCloudDataEntity;
-    function GetEntity(AEntityId: int64): TMyCloudDataEntity;
+    function CreateEntity: TmyCloudDataEntity;
+    function GetEntity(AEntityId: int64): TmyCloudDataEntity;
     procedure RemoveEntity(AEntityId: int64);
     procedure Save;
     property TableID: integer read FTableID;
@@ -318,7 +318,7 @@ type
 
   TLogicalOperator = (loAnd, loOr, loNone);
 
-  TMyCloudDataEntityFilter = class
+  TmyCloudDataEntityFilter = class
   private
     FFieldName: string;
     FValue: Variant;
@@ -335,7 +335,7 @@ type
     property Value: Variant read FValue write FValue;
   end;
 
-  TMyCloudDataEntityFilters = class(TObjectList<TMyCloudDataEntityFilter>)
+  TmyCloudDataEntityFilters = class(TObjectList<TmyCloudDataEntityFilter>)
   public
     function Add(AFieldName: string; AValue: Variant; AComparisonOperator: TComparisonOperator = coEqual; ALogicalOperator: TLogicalOperator = loAnd)
       : integer; overload;
@@ -343,7 +343,7 @@ type
 
   TSortDirection = (soAscending, soDescending);
 
-  TMyCloudDataEntitySorting = class
+  TmyCloudDataEntitySorting = class
   private
     FFieldName: string;
     FSortOrder: TSortDirection;
@@ -355,18 +355,18 @@ type
     property SortDirection: TSortDirection read FSortOrder write FSortOrder;
   end;
 
-  TMyCloudDataEntitySortingCollection = class(TObjectList<TMyCloudDataEntitySorting>)
+  TmyCloudDataEntitySortingCollection = class(TObjectList<TmyCloudDataEntitySorting>)
   public
     function Add(AFieldName: string; AOrder: TSortDirection): integer; overload;
   end;
 
-  TMyCloudDataEntityQuery = class
+  TmyCloudDataEntityQuery = class
   private
     FTableID: integer;
     FPageSize: integer;
     FPageIndex: integer;
-    FFilters: TMyCloudDataEntityFilters;
-    FSorting: TMyCloudDataEntitySortingCollection;
+    FFilters: TmyCloudDataEntityFilters;
+    FSorting: TmyCloudDataEntitySortingCollection;
     FFields: TList<string>;
     function GetIsPaged: Boolean;
   protected
@@ -376,134 +376,134 @@ type
     destructor Destroy; override;
     procedure Reset;
     property Fields: TList<string> read FFields write FFields;
-    property Filters: TMyCloudDataEntityFilters read FFilters write FFilters;
+    property Filters: TmyCloudDataEntityFilters read FFilters write FFilters;
     property IsPaged: Boolean read GetIsPaged;
     property PageIndex: integer read FPageIndex write FPageIndex;
     property PageSize: integer read FPageSize write FPageSize;
-    property Sorting: TMyCloudDataEntitySortingCollection read FSorting write FSorting;
+    property Sorting: TmyCloudDataEntitySortingCollection read FSorting write FSorting;
     property TableID: integer read FTableID;
   end;
 
-  TMyCloudDataEntityQueryResult = class(TObjectList<TMyCloudDataEntity>)
+  TmyCloudDataEntityQueryResult = class(TObjectList<TmyCloudDataEntity>)
   private
     FPageSize: integer;
     FPageIndex: integer;
     FTotalResults: integer;
-    FResults: TMyCloudDataEntities;
+    FResults: TmyCloudDataEntities;
   published
     destructor Destroy; override;
-    property Entities: TMyCloudDataEntities read FResults write FResults;
+    property Entities: TmyCloudDataEntities read FResults write FResults;
     property PageSize: integer read FPageSize write FPageSize;
     property PageIndex: integer read FPageIndex write FPageIndex;
     property TotalResults: integer read FTotalResults write FTotalResults;
   end;
 
-  TMyCloudDataPermission = (pCreate, pRead, pUpdate, pDelete);
+  TmyCloudDataPermission = (pCreate, pRead, pUpdate, pDelete);
 
-  TMyCloudDataPermissions = class(TList<TMyCloudDataPermission>)
+  TmyCloudDataPermissions = class(TList<TmyCloudDataPermission>)
   protected
     procedure SetFromString(ASource: string);
   public
     function ToString: string; override;
-    function IsSameAs(AOther: TMyCloudDataPermissions): Boolean;
-    class function FromString(ASource: string): TMyCloudDataPermissions;
-    class function ReadOnly: TMyCloudDataPermissions;
-    class function ReadWrite: TMyCloudDataPermissions;
-    class function None: TMyCloudDataPermissions;
+    function IsSameAs(AOther: TmyCloudDataPermissions): Boolean;
+    class function FromString(ASource: string): TmyCloudDataPermissions;
+    class function ReadOnly: TmyCloudDataPermissions;
+    class function ReadWrite: TmyCloudDataPermissions;
+    class function None: TmyCloudDataPermissions;
   end;
 
-  TMyCloudDataTableShare = class
+  TmyCloudDataTableShare = class
   private
     FEmail: string;
-    FPermissions: TMyCloudDataPermissions;
+    FPermissions: TmyCloudDataPermissions;
     FTableID: integer;
     FHasUnchangedChanges: Boolean;
-    procedure SetPermissions(const Value: TMyCloudDataPermissions);
+    procedure SetPermissions(const Value: TmyCloudDataPermissions);
   public
-    constructor Create(ATableId: integer; AEmail: string; APermissions: TMyCloudDataPermissions; IsNew: Boolean = True);
+    constructor Create(ATableId: integer; AEmail: string; APermissions: TmyCloudDataPermissions; IsNew: Boolean = True);
   published
     property Email: string read FEmail;
     property HasUnsavedChanges: Boolean read FHasUnchangedChanges;
-    property Permissions: TMyCloudDataPermissions read FPermissions write SetPermissions;
+    property Permissions: TmyCloudDataPermissions read FPermissions write SetPermissions;
     property TableID: integer read FTableID;
   end;
 
-  TMyCloudDataTableShares = class(TMyCloudDataModelCollectionBase<TMyCloudDataTableShare>)
+  TmyCloudDataTableShares = class(TmyCloudDataModelCollectionBase<TmyCloudDataTableShare>)
   private
     FTableID: integer;
   protected
-    function LoadItems: TObjectList<TMyCloudDataTableShare>; override;
-    function TryParseJSON(AJSONString: string; out AResult: TObjectList<TMyCloudDataTableShare>): Boolean;
+    function LoadItems: TObjectList<TmyCloudDataTableShare>; override;
+    function TryParseJSON(AJSONString: string; out AResult: TObjectList<TmyCloudDataTableShare>): Boolean;
   public
     constructor Create(AOwner: TCustomMyCloudDataRESTClient; ATableId: integer); reintroduce; overload;
-    function GetShare(AEmail: string): TMyCloudDataTableShare;
+    function GetShare(AEmail: string): TmyCloudDataTableShare;
     procedure RemoveShare(AEmail: string);
     procedure Save;
-    procedure SetShare(AEmail: string; APermissions: TMyCloudDataPermissions);
+    procedure SetShare(AEmail: string; APermissions: TmyCloudDataPermissions);
   end;
 
-  TMyCloudDataLookupData = class(TDictionary<Variant, Variant>)
+  TmyCloudDataLookupData = class(TDictionary<Variant, Variant>)
   end;
 
-  TMyCloudDataLookupDataCollection = class(TObjectDictionary<string, TMyCloudDataLookupData>)
+  TmyCloudDataLookupDataCollection = class(TObjectDictionary<string, TmyCloudDataLookupData>)
   end;
 
   /// <summary>
   /// This class represents a single table on the myCloudData.net service
   /// </summary>
-  TMyCloudDataTable = class(TMyCloudDataModelBase)
+  TmyCloudDataTable = class(TmyCloudDataModelBase)
   private
-    FEntities: TMyCloudDataEntities;
-    FEntityQuery: TMyCloudDataEntityQuery;
-    FFields: TMyCloudDataFields;
-    FFilters: TMyCloudDataEntityFilters;
+    FEntities: TmyCloudDataEntities;
+    FEntityQuery: TmyCloudDataEntityQuery;
+    FFields: TmyCloudDataFields;
+    FFilters: TmyCloudDataEntityFilters;
     FIsOwner: Boolean;
-    FLookupData: TMyCloudDataLookupDataCollection;
+    FLookupData: TmyCloudDataLookupDataCollection;
     FOriginalTableName: string;
     FOwnerID: integer;
     FPageIndex: integer;
     FPageSize: integer;
     FPermissions: string;
-    FShares: TMyCloudDataTableShares;
-    FSorting: TMyCloudDataEntitySortingCollection;
+    FShares: TmyCloudDataTableShares;
+    FSorting: TmyCloudDataEntitySortingCollection;
     FTableID: integer;
     FTableName: string;
-    function GetEntities: TMyCloudDataEntities;
-    function GetFields: TMyCloudDataFields;
-    function GetLookupData: TMyCloudDataLookupDataCollection;
+    function GetEntities: TmyCloudDataEntities;
+    function GetFields: TmyCloudDataFields;
+    function GetLookupData: TmyCloudDataLookupDataCollection;
   protected
     function ToJSON: string;
   public
     constructor Create(AOwner: TCustomMyCloudDataRESTClient); override;
     destructor Destroy; override;
-    function ExecuteQuery(AQuery: TMyCloudDataEntityQuery): TMyCloudDataEntityQueryResult;
+    function ExecuteQuery(AQuery: TmyCloudDataEntityQuery): TmyCloudDataEntityQueryResult;
     function FromJSON(AJSONContent: string): Boolean;
-    function GetLookupDataForField(AFieldName: string): TMyCloudDataLookupData;
+    function GetLookupDataForField(AFieldName: string): TmyCloudDataLookupData;
     function Query: Boolean;
-    property Entities: TMyCloudDataEntities read GetEntities;
-    property Fields: TMyCloudDataFields read GetFields;
-    property Filters: TMyCloudDataEntityFilters read FFilters write FFilters;
+    property Entities: TmyCloudDataEntities read GetEntities;
+    property Fields: TmyCloudDataFields read GetFields;
+    property Filters: TmyCloudDataEntityFilters read FFilters write FFilters;
     property IsOwner: Boolean read FIsOwner write FIsOwner;
-    property LookupData: TMyCloudDataLookupDataCollection read GetLookupData;
+    property LookupData: TmyCloudDataLookupDataCollection read GetLookupData;
     property OwnerID: integer read FOwnerID;
     property PageIndex: integer read FPageIndex write FPageIndex;
     property PageSize: integer read FPageSize write FPageSize;
     property Permissions: string read FPermissions;
-    property Shares: TMyCloudDataTableShares read FShares write FShares;
-    property Sorting: TMyCloudDataEntitySortingCollection read FSorting write FSorting;
+    property Shares: TmyCloudDataTableShares read FShares write FShares;
+    property Sorting: TmyCloudDataEntitySortingCollection read FSorting write FSorting;
     property TableID: integer read FTableID;
     property TableName: string read FTableName write FTableName;
   end;
 
-  TMyCloudDataTables = class(TMyCloudDataModelCollectionBase<TMyCloudDataTable>)
+  TmyCloudDataTables = class(TmyCloudDataModelCollectionBase<TmyCloudDataTable>)
   protected
-    function TryParseJSON(AJSONString: string; out AResult: TObjectList<TMyCloudDataTable>): Boolean;
-    function LoadItems: TObjectList<TMyCloudDataTable>; override;
+    function TryParseJSON(AJSONString: string; out AResult: TObjectList<TmyCloudDataTable>): Boolean;
+    function LoadItems: TObjectList<TmyCloudDataTable>; override;
   public
-    function CreateTable(ATableName: string): TMyCloudDataTable;
-    function GetOrCreateTable(ATableName: string): TMyCloudDataTable;
-    function GetTableByName(ATableName: string): TMyCloudDataTable;
-    function GetTableByID(ATableId: integer): TMyCloudDataTable;
+    function CreateTable(ATableName: string): TmyCloudDataTable;
+    function GetOrCreateTable(ATableName: string): TmyCloudDataTable;
+    function GetTableByName(ATableName: string): TmyCloudDataTable;
+    function GetTableByID(ATableId: integer): TmyCloudDataTable;
     procedure RemoveTable(ATableId: integer);
   end;
 
@@ -516,11 +516,11 @@ uses
   REST.Types,
   REST.Utils;
 
-function TMyCloudDataField.CheckForExtraMetaData: Boolean;
+function TmyCloudDataField.CheckForExtraMetaData: Boolean;
 var
-  LEmptyMetaData: TMyCloudDataFieldMetaData;
+  LEmptyMetaData: TmyCloudDataFieldMetaData;
 begin
-  LEmptyMetaData := TMyCloudDataFieldMetaData.Create;
+  LEmptyMetaData := TmyCloudDataFieldMetaData.Create;
   try
     Result := MetaData.Equals(LEmptyMetaData);
   finally
@@ -528,25 +528,25 @@ begin
   end;
 end;
 
-{ TMyCloudDataModelBase }
+{ TmyCloudDataModelBase }
 
-constructor TMyCloudDataModelBase.Create(AOwner: TCustomMyCloudDataRESTClient);
+constructor TmyCloudDataModelBase.Create(AOwner: TCustomMyCloudDataRESTClient);
 begin
   FOwner := AOwner;
 end;
 
-{ TMyCloudDataEntity }
+{ TmyCloudDataEntity }
 
-constructor TMyCloudDataEntity.Create(AOwner: TCustomMyCloudDataRESTClient; ATableId: integer; AFieldSet: TMyCloudDataFields);
+constructor TmyCloudDataEntity.Create(AOwner: TCustomMyCloudDataRESTClient; ATableId: integer; AFieldSet: TmyCloudDataFields);
 begin
   inherited Create(AOwner);
   FTableID := ATableId;
   FFields := AFieldSet;
   FValues := TDictionary<string, Variant>.Create;
-  FBlobValues := TObjectDictionary<string, TMyCloudDataBlob>.Create([doOwnsValues]);
+  FBlobValues := TObjectDictionary<string, TmyCloudDataBlob>.Create([doOwnsValues]);
 end;
 
-destructor TMyCloudDataEntity.Destroy;
+destructor TmyCloudDataEntity.Destroy;
 begin
   if Assigned(FValues) then
     FValues.Free;
@@ -555,19 +555,19 @@ begin
   inherited;
 end;
 
-function TMyCloudDataEntity.FromJSON(AJSONString: string; AFieldCollection: TMyCloudDataFields): Boolean;
+function TmyCloudDataEntity.FromJSON(AJSONString: string; AFieldCollection: TmyCloudDataFields): Boolean;
 var
   LObject: TJSONValue;
-  LField: TMyCloudDataField;
+  LField: TmyCloudDataField;
   LFieldValue: Variant;
-  LBlobFieldValue: TMyCloudDataBlob;
+  LBlobFieldValue: TmyCloudDataBlob;
   LFieldStringValue: string;
   LFieldJSONValue: TJSONValue;
 begin
   Result := False;
   LObject := TJSONObject.ParseJSONValue(AJSONString);
   try
-    FEntityId := TMyCloudDataJSonHelper.TryGetJSonProperty<integer>(LObject, '_ID', 0);
+    FEntityId := TmyCloudDataJSonHelper.TryGetJSonProperty<integer>(LObject, '_ID', 0);
     if FEntityId > 0 then
     begin
       FValues.Clear;
@@ -577,7 +577,7 @@ begin
         begin
           if LObject.TryGetValue<string>(LField.FieldName, LFieldStringValue) then
           begin
-            if TMyCloudDataJSonHelper.TryParseFieldValue(LFieldStringValue, LField.DataType, LFieldValue) then
+            if TmyCloudDataJSonHelper.TryParseFieldValue(LFieldStringValue, LField.DataType, LFieldValue) then
             begin
               FValues.Add(LField.FieldName, LFieldValue);
             end;
@@ -587,7 +587,7 @@ begin
         begin
           if LObject.TryGetValue<TJSONValue>(LField.FieldName, LFieldJSONValue) then
           begin
-            LBlobFieldValue := TMyCloudDataBlob.Create(Owner);
+            LBlobFieldValue := TmyCloudDataBlob.Create(Owner);
             if not LBlobFieldValue.FromJSON(LFieldJSONValue.ToJSON) then
             begin
               LBlobFieldValue.FHasData := False;
@@ -604,7 +604,7 @@ begin
   end;
 end;
 
-function TMyCloudDataEntity.GetBlobField(AFieldName: string): TMyCloudDataBlob;
+function TmyCloudDataEntity.GetBlobField(AFieldName: string): TmyCloudDataBlob;
 begin
   Result := nil;
   if FBlobValues.ContainsKey(AFieldName) then
@@ -613,12 +613,12 @@ begin
   end;
 end;
 
-function TMyCloudDataEntity.GetIsNew: Boolean;
+function TmyCloudDataEntity.GetIsNew: Boolean;
 begin
   Result := (ID = 0);
 end;
 
-function TMyCloudDataEntity.GetValue(AFieldName: string): Variant;
+function TmyCloudDataEntity.GetValue(AFieldName: string): Variant;
 begin
   Result := default (Variant);
   if FValues.ContainsKey(AFieldName) then
@@ -627,22 +627,22 @@ begin
   end;
 end;
 
-function TMyCloudDataEntity.GetValueAsString(AFieldName: string): string;
+function TmyCloudDataEntity.GetValueAsString(AFieldName: string): string;
 begin
   Result := GetValue(AFieldName);
 end;
 
-procedure TMyCloudDataEntity.SetValue(AFieldName: string; AValue: Variant);
+procedure TmyCloudDataEntity.SetValue(AFieldName: string; AValue: Variant);
 begin
   FValues.AddOrSetValue(AFieldName, AValue);
   FHasUnsavedChanges := True;
 end;
 
-function TMyCloudDataEntity.ToJSON: string;
+function TmyCloudDataEntity.ToJSON: string;
 var
   LJSONResult: TJSONObject;
   LFieldValuesList: TJSONObject;
-  LField: TMyCloudDataField;
+  LField: TmyCloudDataField;
   LFieldValue: string;
 begin
   LJSONResult := TJSONObject.Create;
@@ -660,7 +660,7 @@ begin
         if (FValues.ContainsKey(LField.FieldName)) then
         begin
           LFieldValue := '';
-          if (TMyCloudDataJSonHelper.TrySerializeFieldValue(FValues[LField.FieldName], LField.DataType, LFieldValue)) then
+          if (TmyCloudDataJSonHelper.TrySerializeFieldValue(FValues[LField.FieldName], LField.DataType, LFieldValue)) then
           begin
             LFieldValuesList.AddPair(LField.FieldName, LFieldValue);
           end;
@@ -677,7 +677,7 @@ begin
   end;
 end;
 
-class function TMyCloudDataJSonHelper.TryParseBooleanFieldValue(ASource: string; out AResult: Variant): Boolean;
+class function TmyCloudDataJSonHelper.TryParseBooleanFieldValue(ASource: string; out AResult: Variant): Boolean;
 var
   LBoolValue: Boolean;
 begin
@@ -689,7 +689,7 @@ begin
   end;
 end;
 
-class function TMyCloudDataJSonHelper.TryParseDateTimeFieldValue(ASource: string; out AResult: Variant): Boolean;
+class function TmyCloudDataJSonHelper.TryParseDateTimeFieldValue(ASource: string; out AResult: Variant): Boolean;
 var
   da, mo, ye, ho, mi, se: Word;
   err: integer;
@@ -720,7 +720,7 @@ begin
 
 end;
 
-class function TMyCloudDataJSonHelper.TryParseFieldValue(ASource: string; ADataType: TMyCloudDataFieldDataType; out AResult: Variant): Boolean;
+class function TmyCloudDataJSonHelper.TryParseFieldValue(ASource: string; ADataType: TmyCloudDataFieldDataType; out AResult: Variant): Boolean;
 begin
   Result := False;
   case ADataType of
@@ -748,7 +748,7 @@ begin
   end;
 end;
 
-class function TMyCloudDataJSonHelper.TryParseFloatFieldValue(ASource: string; out AResult: Variant): Boolean;
+class function TmyCloudDataJSonHelper.TryParseFloatFieldValue(ASource: string; out AResult: Variant): Boolean;
 var
   LInt64Value: int64;
 begin
@@ -759,7 +759,7 @@ begin
   end;
 end;
 
-class function TMyCloudDataJSonHelper.TryParseIntegerFieldValue(ASource: string; out AResult: Variant): Boolean;
+class function TmyCloudDataJSonHelper.TryParseIntegerFieldValue(ASource: string; out AResult: Variant): Boolean;
 var
   LIntValue: integer;
 begin
@@ -770,7 +770,7 @@ begin
   end;
 end;
 
-class function TMyCloudDataJSonHelper.TrySerializeBooleanFieldValue(AValue: Variant; out AStringResult: string): Boolean;
+class function TmyCloudDataJSonHelper.TrySerializeBooleanFieldValue(AValue: Variant; out AStringResult: string): Boolean;
 var
   LValue: Boolean;
 begin
@@ -794,7 +794,7 @@ begin
   end;
 end;
 
-class function TMyCloudDataJSonHelper.TrySerializeDateTimeFieldValue(AValue: Variant; out AStringResult: string): Boolean;
+class function TmyCloudDataJSonHelper.TrySerializeDateTimeFieldValue(AValue: Variant; out AStringResult: string): Boolean;
 var
   da, mo, ye, ho, mi, se, ms: Word;
   LDateTimeValue: TDatetime;
@@ -812,7 +812,7 @@ begin
   end;
 end;
 
-class function TMyCloudDataJSonHelper.IntToZStr(i, l: integer): string;
+class function TmyCloudDataJSonHelper.IntToZStr(i, l: integer): string;
 var
   Res: string;
 begin
@@ -824,7 +824,7 @@ begin
   Result := Res;
 end;
 
-class function TMyCloudDataJSonHelper.TrySerializeFieldValue(AValue: Variant; ADataType: TMyCloudDataFieldDataType;
+class function TmyCloudDataJSonHelper.TrySerializeFieldValue(AValue: Variant; ADataType: TmyCloudDataFieldDataType;
   out AStringResult: string): Boolean;
 begin
   Result := False;
@@ -842,7 +842,7 @@ begin
   end;
 end;
 
-class function TMyCloudDataJSonHelper.TrySerializeFloatFieldValue(AValue: Variant; out AStringResult: string): Boolean;
+class function TmyCloudDataJSonHelper.TrySerializeFloatFieldValue(AValue: Variant; out AStringResult: string): Boolean;
 begin
   try
     AStringResult := FloatToStr(AValue);
@@ -853,7 +853,7 @@ begin
   end;
 end;
 
-class function TMyCloudDataJSonHelper.TrySerializeIntegerFieldValue(AValue: Variant; out AStringResult: string): Boolean;
+class function TmyCloudDataJSonHelper.TrySerializeIntegerFieldValue(AValue: Variant; out AStringResult: string): Boolean;
 begin
   try
     AStringResult := IntToStr(AValue);
@@ -864,7 +864,7 @@ begin
   end;
 end;
 
-class function TMyCloudDataJSonHelper.TrySerializeStringFieldValue(AValue: Variant; out AStringResult: string): Boolean;
+class function TmyCloudDataJSonHelper.TrySerializeStringFieldValue(AValue: Variant; out AStringResult: string): Boolean;
 begin
   try
     Result := True;
@@ -879,9 +879,9 @@ begin
   end;
 end;
 
-function TMyCloudDataEntity.TrySetValueFromString(AFieldName, AValue: string): Boolean;
+function TmyCloudDataEntity.TrySetValueFromString(AFieldName, AValue: string): Boolean;
 var
-  LField: TMyCloudDataField;
+  LField: TmyCloudDataField;
   LValue: Variant;
 begin
   Result := False;
@@ -891,7 +891,7 @@ begin
     begin
       if not(LField.DataType = ftBlob) then
       begin
-        Result := TMyCloudDataJSonHelper.TryParseFieldValue(AValue, LField.DataType, LValue);
+        Result := TmyCloudDataJSonHelper.TryParseFieldValue(AValue, LField.DataType, LValue);
         if Result then
         begin
           SetValue(AFieldName, LValue);
@@ -903,17 +903,17 @@ begin
   end;
 end;
 
-{ TMyCloudDataEntityQuery }
+{ TmyCloudDataEntityQuery }
 
-constructor TMyCloudDataEntityQuery.Create(ATableId: integer);
+constructor TmyCloudDataEntityQuery.Create(ATableId: integer);
 begin
   FTableID := ATableId;
-  FFilters := TMyCloudDataEntityFilters.Create;
-  FSorting := TMyCloudDataEntitySortingCollection.Create;
+  FFilters := TmyCloudDataEntityFilters.Create;
+  FSorting := TmyCloudDataEntitySortingCollection.Create;
   FFields := TList<string>.Create;
 end;
 
-destructor TMyCloudDataEntityQuery.Destroy;
+destructor TmyCloudDataEntityQuery.Destroy;
 begin
   inherited;
   if Assigned(FFilters) then
@@ -924,12 +924,12 @@ begin
     FFields.Free;
 end;
 
-function TMyCloudDataEntityQuery.GetIsPaged: Boolean;
+function TmyCloudDataEntityQuery.GetIsPaged: Boolean;
 begin
   Result := (PageSize > 0) and (PageIndex >= 0);
 end;
 
-procedure TMyCloudDataEntityQuery.Reset;
+procedure TmyCloudDataEntityQuery.Reset;
 begin
   FFilters.Clear;
   FSorting.Clear;
@@ -938,12 +938,12 @@ begin
   FPageIndex := 0;
 end;
 
-function TMyCloudDataEntityQuery.ToJSON: string;
+function TmyCloudDataEntityQuery.ToJSON: string;
 var
   LJSONResult: TJSONObject;
-  LFilter: TMyCloudDataEntityFilter;
+  LFilter: TmyCloudDataEntityFilter;
   LFiltersArray: TJSONArray;
-  LSorting: TMyCloudDataEntitySorting;
+  LSorting: TmyCloudDataEntitySorting;
   LSortingArray: TJSONArray;
   LField: string;
   LFieldsFilter: string;
@@ -995,16 +995,16 @@ begin
   end;
 end;
 
-{ TMyCloudDataTable }
+{ TmyCloudDataTable }
 
-constructor TMyCloudDataTable.Create(AOwner: TCustomMyCloudDataRESTClient);
+constructor TmyCloudDataTable.Create(AOwner: TCustomMyCloudDataRESTClient);
 begin
   inherited;
-  Filters := TMyCloudDataEntityFilters.Create;
-  Sorting := TMyCloudDataEntitySortingCollection.Create;
+  Filters := TmyCloudDataEntityFilters.Create;
+  Sorting := TmyCloudDataEntitySortingCollection.Create;
 end;
 
-destructor TMyCloudDataTable.Destroy;
+destructor TmyCloudDataTable.Destroy;
 begin
   if Assigned(FFilters) then
     FFilters.Free;
@@ -1021,7 +1021,7 @@ begin
   inherited;
 end;
 
-function TMyCloudDataTable.ExecuteQuery(AQuery: TMyCloudDataEntityQuery): TMyCloudDataEntityQueryResult;
+function TmyCloudDataTable.ExecuteQuery(AQuery: TmyCloudDataEntityQuery): TmyCloudDataEntityQueryResult;
 var
   LCountStringValue: string;
 begin
@@ -1038,11 +1038,11 @@ begin
 
     if (Owner.Request.Response.Status.Success) then
     begin
-      Result := TMyCloudDataEntityQueryResult.Create(True);
+      Result := TmyCloudDataEntityQueryResult.Create(True);
       try
         Result.PageSize := AQuery.PageSize;
         Result.PageIndex := AQuery.PageIndex;
-        Result.Entities := TMyCloudDataEntities.Create(Owner, TableID, Fields);
+        Result.Entities := TmyCloudDataEntities.Create(Owner, TableID, Fields);
         if Result.Entities.FromJSON(Owner.Request.Response.Content) then
         begin
           if AQuery.IsPaged and ((AQuery.PageIndex > 0) or (AQuery.PageSize = Result.Entities.Count)) then
@@ -1087,7 +1087,7 @@ begin
   end;
 end;
 
-function TMyCloudDataTable.FromJSON(AJSONContent: string): Boolean;
+function TmyCloudDataTable.FromJSON(AJSONContent: string): Boolean;
 var
   LJSonValue: TJSONValue;
 begin
@@ -1096,11 +1096,11 @@ begin
   try
     if LJSonValue.TryGetValue<integer>('tableid', FTableID) then
     begin
-      FTableName := TMyCloudDataJSonHelper.TryGetJSonProperty<string>(LJSonValue, 'tablename', TableName);
+      FTableName := TmyCloudDataJSonHelper.TryGetJSonProperty<string>(LJSonValue, 'tablename', TableName);
       FOriginalTableName := FTableName;
-      FPermissions := TMyCloudDataJSonHelper.TryGetJSonProperty<string>(LJSonValue, 'permissions');
-      FOwnerID := TMyCloudDataJSonHelper.TryGetJSonProperty<integer>(LJSonValue, 'ownerid');
-      FIsOwner := TMyCloudDataJSonHelper.TryGetJSonProperty<Boolean>(LJSonValue, 'isowner');
+      FPermissions := TmyCloudDataJSonHelper.TryGetJSonProperty<string>(LJSonValue, 'permissions');
+      FOwnerID := TmyCloudDataJSonHelper.TryGetJSonProperty<integer>(LJSonValue, 'ownerid');
+      FIsOwner := TmyCloudDataJSonHelper.TryGetJSonProperty<Boolean>(LJSonValue, 'isowner');
       Result := True;
     end;
   finally
@@ -1109,38 +1109,38 @@ begin
 
 end;
 
-function TMyCloudDataTable.GetEntities: TMyCloudDataEntities;
+function TmyCloudDataTable.GetEntities: TmyCloudDataEntities;
 begin
   if not Assigned(FEntities) then
   begin
-    FEntities := TMyCloudDataEntities.Create(Owner, TableID, Fields);
+    FEntities := TmyCloudDataEntities.Create(Owner, TableID, Fields);
   end;
   Result := FEntities;
 end;
 
-function TMyCloudDataTable.GetFields: TMyCloudDataFields;
+function TmyCloudDataTable.GetFields: TmyCloudDataFields;
 begin
   if (FFields = nil) then
   begin
-    FFields := TMyCloudDataFields.Create(Owner, TableID);
+    FFields := TmyCloudDataFields.Create(Owner, TableID);
   end;
   Result := FFields;
 end;
 
-function TMyCloudDataTable.GetLookupData: TMyCloudDataLookupDataCollection;
+function TmyCloudDataTable.GetLookupData: TmyCloudDataLookupDataCollection;
 var
-  LField: TMyCloudDataField;
-  LLookupTable: TMyCloudDataTable;
+  LField: TmyCloudDataField;
+  LLookupTable: TmyCloudDataTable;
   LLookupKeyFieldName: string;
   LLookupValueFieldName: string;
-  LQuery: TMyCloudDataEntityQuery;
-  LQueryResult: TMyCloudDataEntityQueryResult;
-  LFieldLookupData: TMyCloudDataLookupData;
-  LEntity: TMyCloudDataEntity;
+  LQuery: TmyCloudDataEntityQuery;
+  LQueryResult: TmyCloudDataEntityQueryResult;
+  LFieldLookupData: TmyCloudDataLookupData;
+  LEntity: TmyCloudDataEntity;
 begin
   if FLookupData = nil then
   begin
-    FLookupData := TMyCloudDataLookupDataCollection.Create;
+    FLookupData := TmyCloudDataLookupDataCollection.Create;
     try
       for LField in Fields do
       begin
@@ -1153,14 +1153,14 @@ begin
             LLookupTable := Owner.GetTable(LField.MetaData.LookupTable);
             if (LLookupTable <> nil) then
             begin
-              LQuery := TMyCloudDataEntityQuery.Create(LLookupTable.TableID);
+              LQuery := TmyCloudDataEntityQuery.Create(LLookupTable.TableID);
               LQuery.Fields.Add(LLookupKeyFieldName);
               LQuery.Fields.Add(LLookupValueFieldName);
               LQueryResult := LLookupTable.ExecuteQuery(LQuery);
               try
                 if (LQueryResult.TotalResults > 0) then
                 begin
-                  LFieldLookupData := TMyCloudDataLookupData.Create;
+                  LFieldLookupData := TmyCloudDataLookupData.Create;
                   for LEntity in LQueryResult.Entities do
                   begin
                     if not LFieldLookupData.ContainsKey(LEntity.GetValue(LLookupKeyFieldName)) then
@@ -1188,7 +1188,7 @@ begin
   Result := FLookupData;
 end;
 
-function TMyCloudDataTable.GetLookupDataForField(AFieldName: string): TMyCloudDataLookupData;
+function TmyCloudDataTable.GetLookupDataForField(AFieldName: string): TmyCloudDataLookupData;
 begin
   Result := nil;
   if (LookupData.ContainsKey(AFieldName)) then
@@ -1197,14 +1197,14 @@ begin
   end;
 end;
 
-function TMyCloudDataTable.Query: Boolean;
+function TmyCloudDataTable.Query: Boolean;
 var
-  LQuery: TMyCloudDataEntityQuery;
-  LQueryResult: TMyCloudDataEntityQueryResult;
-  LFilter: TMyCloudDataEntityFilter;
-  LSorting: TMyCloudDataEntitySorting;
+  LQuery: TmyCloudDataEntityQuery;
+  LQueryResult: TmyCloudDataEntityQueryResult;
+  LFilter: TmyCloudDataEntityFilter;
+  LSorting: TmyCloudDataEntitySorting;
 begin
-  LQuery := TMyCloudDataEntityQuery.Create(TableID);
+  LQuery := TmyCloudDataEntityQuery.Create(TableID);
   try
     LQuery.PageSize := PageSize;
     LQuery.PageIndex := PageIndex;
@@ -1244,7 +1244,7 @@ begin
   end;
 end;
 
-function TMyCloudDataTable.ToJSON: string;
+function TmyCloudDataTable.ToJSON: string;
 var
   LRequestBody: TJSONObject;
 begin
@@ -1267,12 +1267,12 @@ begin
   end;
 end;
 
-{ TMyCloudDataTables }
+{ TmyCloudDataTables }
 
-function TMyCloudDataTables.CreateTable(ATableName: string): TMyCloudDataTable;
+function TmyCloudDataTables.CreateTable(ATableName: string): TmyCloudDataTable;
 begin
 
-  Result := TMyCloudDataTable.Create(Owner);
+  Result := TmyCloudDataTable.Create(Owner);
   try
     Result.TableName := ATableName;
     Owner.Request.ResetToDefaults;
@@ -1306,9 +1306,9 @@ begin
   end;
 end;
 
-function TMyCloudDataTables.GetTableByID(ATableId: integer): TMyCloudDataTable;
+function TmyCloudDataTables.GetTableByID(ATableId: integer): TmyCloudDataTable;
 var
-  LItem: TMyCloudDataTable;
+  LItem: TmyCloudDataTable;
 begin
   if Items <> nil then
   begin
@@ -1324,9 +1324,9 @@ begin
   Result := nil;
 end;
 
-function TMyCloudDataTables.GetTableByName(ATableName: string): TMyCloudDataTable;
+function TmyCloudDataTables.GetTableByName(ATableName: string): TmyCloudDataTable;
 var
-  LItem: TMyCloudDataTable;
+  LItem: TmyCloudDataTable;
 begin
   if Items <> nil then
   begin
@@ -1342,7 +1342,7 @@ begin
   Result := nil;
 end;
 
-function TMyCloudDataTables.GetOrCreateTable(ATableName: string): TMyCloudDataTable;
+function TmyCloudDataTables.GetOrCreateTable(ATableName: string): TmyCloudDataTable;
 begin
   Result := GetTableByName(ATableName);
   if Result = nil then
@@ -1351,7 +1351,7 @@ begin
   end;
 end;
 
-function TMyCloudDataTables.LoadItems: TObjectList<TMyCloudDataTable>;
+function TmyCloudDataTables.LoadItems: TObjectList<TmyCloudDataTable>;
 begin
   try
     Result := nil;
@@ -1387,9 +1387,9 @@ begin
   end;
 end;
 
-procedure TMyCloudDataTables.RemoveTable(ATableId: integer);
+procedure TmyCloudDataTables.RemoveTable(ATableId: integer);
 var
-  LTableToRemove: TMyCloudDataTable;
+  LTableToRemove: TmyCloudDataTable;
 begin
   LTableToRemove := GetTableByID(ATableId);
   if LTableToRemove <> nil then
@@ -1410,19 +1410,19 @@ begin
   end;
 end;
 
-function TMyCloudDataTables.TryParseJSON(AJSONString: string; out AResult: TObjectList<TMyCloudDataTable>): Boolean;
+function TmyCloudDataTables.TryParseJSON(AJSONString: string; out AResult: TObjectList<TmyCloudDataTable>): Boolean;
 var
   LObject: TJSONValue;
   LArray: TJSONArray;
-  LTable: TMyCloudDataTable;
+  LTable: TmyCloudDataTable;
 begin
   Result := True;
-  AResult := TObjectList<TMyCloudDataTable>.Create(True);
+  AResult := TObjectList<TmyCloudDataTable>.Create(True);
   LArray := TJSONObject.ParseJSONValue(AJSONString) as TJSONArray;
   try
     for LObject in LArray do
     begin
-      LTable := TMyCloudDataTable.Create(Owner);
+      LTable := TmyCloudDataTable.Create(Owner);
       if LTable.FromJSON(LObject.ToJSON) then
       begin
         AResult.Add(LTable);
@@ -1523,16 +1523,16 @@ begin
 
 end;
 
-function TCustomMyCloudDataRESTClient.GetTable(ATableId: integer): TMyCloudDataTable;
+function TCustomMyCloudDataRESTClient.GetTable(ATableId: integer): TmyCloudDataTable;
 begin
   Result := Tables.GetTableByID(ATableId);
 end;
 
-function TCustomMyCloudDataRESTClient.GetTables: TMyCloudDataTables;
+function TCustomMyCloudDataRESTClient.GetTables: TmyCloudDataTables;
 begin
   if FTables = nil then
   begin
-    FTables := TMyCloudDataTables.Create(self as TCustomMyCloudDataRESTClient);
+    FTables := TmyCloudDataTables.Create(self as TCustomMyCloudDataRESTClient);
   end;
   Result := FTables;
 end;
@@ -1558,11 +1558,11 @@ begin
   raise Exception.Create('Unknown MyCloudData Exception');
 end;
 
-{ TMyCloudDataEntityCollection }
+{ TmyCloudDataEntityCollection }
 
-{ TMyCloudDataFieldCollection }
+{ TmyCloudDataFieldCollection }
 
-function TMyCloudDataFields.Add(AFieldName: string; ADataType: TMyCloudDataFieldDataType; AFieldSize: integer): TMyCloudDataField;
+function TmyCloudDataFields.Add(AFieldName: string; ADataType: TmyCloudDataFieldDataType; AFieldSize: integer): TmyCloudDataField;
 begin
   if not(ADataType = ftWideString) then
   begin
@@ -1572,7 +1572,7 @@ begin
   Result.MaxFieldSize := AFieldSize;
 end;
 
-function TMyCloudDataFields.AddOrUpdate(AFieldName: string; ADataType: TMyCloudDataFieldDataType): TMyCloudDataField;
+function TmyCloudDataFields.AddOrUpdate(AFieldName: string; ADataType: TmyCloudDataFieldDataType): TmyCloudDataField;
 begin
   Result := GetByName(AFieldName);
   if Result = nil then
@@ -1588,7 +1588,7 @@ begin
   end;
 end;
 
-function TMyCloudDataFields.AddOrUpdate(AFieldName: string; ADataType: TMyCloudDataFieldDataType; AFieldSize: integer): TMyCloudDataField;
+function TmyCloudDataFields.AddOrUpdate(AFieldName: string; ADataType: TmyCloudDataFieldDataType; AFieldSize: integer): TmyCloudDataField;
 begin
   Result := GetByName(AFieldName);
   if Result = nil then
@@ -1601,7 +1601,7 @@ begin
   Result.MaxFieldSize := AFieldSize;
 end;
 
-function TMyCloudDataFields.Add(AFieldName: string; ADataType: TMyCloudDataFieldDataType): TMyCloudDataField;
+function TmyCloudDataFields.Add(AFieldName: string; ADataType: TmyCloudDataFieldDataType): TmyCloudDataField;
 begin
 
   if not(GetByName(AFieldName) = nil) then
@@ -1614,7 +1614,7 @@ begin
     raise Exception.Create('Current user cannot use BLOB fields');
   end;
 
-  Result := TMyCloudDataField.Create(TableID);
+  Result := TmyCloudDataField.Create(TableID);
   Items.Add(Result);
   Result.FieldName := AFieldName;
   Result.DataType := ADataType;
@@ -1625,25 +1625,25 @@ begin
   end;
 end;
 
-constructor TMyCloudDataFields.Create(AOwner: TCustomMyCloudDataRESTClient; ATableId: integer);
+constructor TmyCloudDataFields.Create(AOwner: TCustomMyCloudDataRESTClient; ATableId: integer);
 begin
   inherited Create(AOwner);
   FTableID := ATableId;
 end;
 
-function TMyCloudDataFields.TryParseJSON(AJSONString: string; out AResult: TObjectList<TMyCloudDataField>): Boolean;
+function TmyCloudDataFields.TryParseJSON(AJSONString: string; out AResult: TObjectList<TmyCloudDataField>): Boolean;
 var
   LObject: TJSONValue;
   LArray: TJSONArray;
-  LField: TMyCloudDataField;
+  LField: TmyCloudDataField;
 begin
   Result := True;
-  AResult := TObjectList<TMyCloudDataField>.Create;
+  AResult := TObjectList<TmyCloudDataField>.Create;
   LArray := TJSONObject.ParseJSONValue(AJSONString) as TJSONArray;
   try
     for LObject in LArray do
     begin
-      LField := TMyCloudDataField.Create(TableID);
+      LField := TmyCloudDataField.Create(TableID);
       if LField.FromJSON(LObject.ToJSON) then
       begin
         if not(LField.FieldName = '_ID') then
@@ -1667,9 +1667,9 @@ begin
   end;
 end;
 
-function TMyCloudDataFields.GetByName(AFieldName: string): TMyCloudDataField;
+function TmyCloudDataFields.GetByName(AFieldName: string): TmyCloudDataField;
 var
-  LItem: TMyCloudDataField;
+  LItem: TmyCloudDataField;
 begin
   for LItem in Items do
   begin
@@ -1682,9 +1682,9 @@ begin
   Result := nil;
 end;
 
-function TMyCloudDataFields.GetByOriginalName(AOriginalFieldName: string): TMyCloudDataField;
+function TmyCloudDataFields.GetByOriginalName(AOriginalFieldName: string): TmyCloudDataField;
 var
-  LItem: TMyCloudDataField;
+  LItem: TmyCloudDataField;
 begin
   for LItem in Items do
   begin
@@ -1697,7 +1697,7 @@ begin
   Result := nil;
 end;
 
-function TMyCloudDataFields.LoadItems: TObjectList<TMyCloudDataField>;
+function TmyCloudDataFields.LoadItems: TObjectList<TmyCloudDataField>;
 begin
   try
 
@@ -1737,11 +1737,11 @@ end;
 /// Compares the fieldset for this table with the saved fields on the myCloudData.net service
 /// and Creates, Updates or Deletes the fields where needed.
 /// </summary>
-procedure TMyCloudDataFields.Save;
+procedure TmyCloudDataFields.Save;
 var
-  LSavedFields: TObjectList<TMyCloudDataField>;
-  LSavedField: TMyCloudDataField;
-  LNewField: TMyCloudDataField;
+  LSavedFields: TObjectList<TmyCloudDataField>;
+  LSavedField: TmyCloudDataField;
+  LNewField: TmyCloudDataField;
   LIsNewField: Boolean;
 begin
 
@@ -1820,7 +1820,7 @@ begin
     end
     else
     begin
-      LSavedFields := TObjectList<TMyCloudDataField>.Create;
+      LSavedFields := TObjectList<TmyCloudDataField>.Create;
     end;
 
     for LNewField in FItems do
@@ -1875,14 +1875,14 @@ begin
   end;
 end;
 
-constructor TMyCloudDataField.Create(ATableId: integer);
+constructor TmyCloudDataField.Create(ATableId: integer);
 begin
   inherited Create;
   FTableID := ATableId;
-  FMetaData := TMyCloudDataFieldMetaData.Create;
+  FMetaData := TmyCloudDataFieldMetaData.Create;
 end;
 
-function TMyCloudDataField.DataTypeToString(ADataType: TMyCloudDataFieldDataType): string;
+function TmyCloudDataField.DataTypeToString(ADataType: TmyCloudDataFieldDataType): string;
 begin
   if ADataType = ftInteger then
     Result := 'int';
@@ -1909,13 +1909,13 @@ begin
     Result := 'varbinary';
 end;
 
-destructor TMyCloudDataField.Destroy;
+destructor TmyCloudDataField.Destroy;
 begin
   FMetaData.Free;
   inherited;
 end;
 
-function TMyCloudDataField.FromJSON(AJSONString: string): Boolean;
+function TmyCloudDataField.FromJSON(AJSONString: string): Boolean;
 var
   LObject: TJSONValue;
   LDataTypeAsString: string;
@@ -1944,30 +1944,30 @@ begin
     FOriginalFieldName := FieldName;
     DataType := StringToDataType(LDataTypeAsString);
 
-    IsNullable := LowerCase(TMyCloudDataJSonHelper.TryGetJSonProperty<string>(LObject, 'is_nullable', 'no')) = 'yes';
+    IsNullable := LowerCase(TmyCloudDataJSonHelper.TryGetJSonProperty<string>(LObject, 'is_nullable', 'no')) = 'yes';
 
     if DataType = ftWideString then
-      MaxFieldSize := TMyCloudDataJSonHelper.TryGetJSonProperty<integer>(LObject, 'character_maximum_length')
+      MaxFieldSize := TmyCloudDataJSonHelper.TryGetJSonProperty<integer>(LObject, 'character_maximum_length')
     else
       MaxFieldSize := 0;
 
     // Extra metadata
-    MetaData.LabelText := TMyCloudDataJSonHelper.TryGetJSonProperty<string>(LObject, 'fieldlabel');
-    MetaData.DefaultValue := TMyCloudDataJSonHelper.TryGetJSonProperty<string>(LObject, 'fielddefaultvalue');
-    MetaData.Width := TMyCloudDataJSonHelper.TryGetJSonProperty<integer>(LObject, 'fieldwidth');
-    MetaData.Order := TMyCloudDataJSonHelper.TryGetJSonProperty<integer>(LObject, 'fieldorder');
-    MetaData.Mask := TMyCloudDataJSonHelper.TryGetJSonProperty<string>(LObject, 'fieldmask');
-    MetaData.Minimum := TMyCloudDataJSonHelper.TryGetJSonProperty<double>(LObject, 'fieldminimum');
-    MetaData.Maximum := TMyCloudDataJSonHelper.TryGetJSonProperty<double>(LObject, 'fieldmaximum');
-    MetaData.MinimumDate := TMyCloudDataJSonHelper.TryGetJSonProperty<TDatetime>(LObject, 'fieldminimumdate');
-    MetaData.MaximumDate := TMyCloudDataJSonHelper.TryGetJSonProperty<TDatetime>(LObject, 'fieldmaximumdate');
-    MetaData.Visible := TMyCloudDataJSonHelper.TryGetJSonProperty<Boolean>(LObject, 'fieldvisible');
-    MetaData.Enabled := TMyCloudDataJSonHelper.TryGetJSonProperty<Boolean>(LObject, 'fieldenabled');
-    MetaData.Required := TMyCloudDataJSonHelper.TryGetJSonProperty<Boolean>(LObject, 'fieldrequired');
-    MetaData.Description := TMyCloudDataJSonHelper.TryGetJSonProperty<string>(LObject, 'fielddescription');
-    MetaData.LookupTable := TMyCloudDataJSonHelper.TryGetJSonProperty<int64>(LObject, 'fieldlookuptable');
-    MetaData.LookupField := TMyCloudDataJSonHelper.TryGetJSonProperty<string>(LObject, 'fieldlookupfield');
-    MetaData.LookupKeyField := TMyCloudDataJSonHelper.TryGetJSonProperty<string>(LObject, 'fieldlookupkeyfield');
+    MetaData.LabelText := TmyCloudDataJSonHelper.TryGetJSonProperty<string>(LObject, 'fieldlabel');
+    MetaData.DefaultValue := TmyCloudDataJSonHelper.TryGetJSonProperty<string>(LObject, 'fielddefaultvalue');
+    MetaData.Width := TmyCloudDataJSonHelper.TryGetJSonProperty<integer>(LObject, 'fieldwidth');
+    MetaData.Order := TmyCloudDataJSonHelper.TryGetJSonProperty<integer>(LObject, 'fieldorder');
+    MetaData.Mask := TmyCloudDataJSonHelper.TryGetJSonProperty<string>(LObject, 'fieldmask');
+    MetaData.Minimum := TmyCloudDataJSonHelper.TryGetJSonProperty<double>(LObject, 'fieldminimum');
+    MetaData.Maximum := TmyCloudDataJSonHelper.TryGetJSonProperty<double>(LObject, 'fieldmaximum');
+    MetaData.MinimumDate := TmyCloudDataJSonHelper.TryGetJSonProperty<TDatetime>(LObject, 'fieldminimumdate');
+    MetaData.MaximumDate := TmyCloudDataJSonHelper.TryGetJSonProperty<TDatetime>(LObject, 'fieldmaximumdate');
+    MetaData.Visible := TmyCloudDataJSonHelper.TryGetJSonProperty<Boolean>(LObject, 'fieldvisible');
+    MetaData.Enabled := TmyCloudDataJSonHelper.TryGetJSonProperty<Boolean>(LObject, 'fieldenabled');
+    MetaData.Required := TmyCloudDataJSonHelper.TryGetJSonProperty<Boolean>(LObject, 'fieldrequired');
+    MetaData.Description := TmyCloudDataJSonHelper.TryGetJSonProperty<string>(LObject, 'fielddescription');
+    MetaData.LookupTable := TmyCloudDataJSonHelper.TryGetJSonProperty<int64>(LObject, 'fieldlookuptable');
+    MetaData.LookupField := TmyCloudDataJSonHelper.TryGetJSonProperty<string>(LObject, 'fieldlookupfield');
+    MetaData.LookupKeyField := TmyCloudDataJSonHelper.TryGetJSonProperty<string>(LObject, 'fieldlookupkeyfield');
 
     if LObject.TryGetValue('fieldtypedvalues', LTypedValuesArray) then
     begin
@@ -1975,8 +1975,8 @@ begin
       begin
         for LTypedValueJSON in LTypedValuesArray do
         begin
-          LTypedValueKey := TMyCloudDataJSonHelper.TryGetJSonProperty<string>(LTypedValueJSON, 'datavalue', '');
-          LTypedValueValue := TMyCloudDataJSonHelper.TryGetJSonProperty<string>(LTypedValueJSON, 'displayvalue', '');
+          LTypedValueKey := TmyCloudDataJSonHelper.TryGetJSonProperty<string>(LTypedValueJSON, 'datavalue', '');
+          LTypedValueValue := TmyCloudDataJSonHelper.TryGetJSonProperty<string>(LTypedValueJSON, 'displayvalue', '');
           MetaData.TypedValues.Add(LTypedValueKey, LTypedValueValue);
         end;
       end;
@@ -1989,18 +1989,18 @@ begin
 
 end;
 
-function TMyCloudDataField.CompareBasicFields(AOtherField: TMyCloudDataField): Boolean;
+function TmyCloudDataField.CompareBasicFields(AOtherField: TmyCloudDataField): Boolean;
 begin
   Result := (TableID = AOtherField.TableID) and (FieldName = AOtherField.FieldName) and (DataType = AOtherField.DataType) and
     (MaxFieldSize = AOtherField.MaxFieldSize);
 end;
 
-function TMyCloudDataField.CompareExtraMetaData(AOtherField: TMyCloudDataField): Boolean;
+function TmyCloudDataField.CompareExtraMetaData(AOtherField: TmyCloudDataField): Boolean;
 begin
   Result := MetaData.Equals(AOtherField.MetaData);
 end;
 
-function TMyCloudDataField.StringToDataType(AString: string): TMyCloudDataFieldDataType;
+function TmyCloudDataField.StringToDataType(AString: string): TmyCloudDataFieldDataType;
 begin
   Result := ftWideString;
   // Default to string
@@ -2034,7 +2034,7 @@ begin
 
 end;
 
-function TMyCloudDataField.ToJSON(AIsNew: Boolean): string;
+function TmyCloudDataField.ToJSON(AIsNew: Boolean): string;
 var
   LJsonObject: TJSONObject;
 begin
@@ -2060,7 +2060,7 @@ begin
 
 end;
 
-function TMyCloudDataField.ToMetaDataJSON: string;
+function TmyCloudDataField.ToMetaDataJSON: string;
 var
   LJsonObject: TJSONObject;
   LStringValue: string;
@@ -2079,27 +2079,27 @@ begin
     LJsonObject.AddPair('fieldmin', FloatToStr(MetaData.Minimum));
     LJsonObject.AddPair('fieldmax', FloatToStr(MetaData.Maximum));
 
-    if TMyCloudDataJSonHelper.TrySerializeDateTimeFieldValue(MetaData.MinimumDate, LStringValue) then
+    if TmyCloudDataJSonHelper.TrySerializeDateTimeFieldValue(MetaData.MinimumDate, LStringValue) then
     begin
       LJsonObject.AddPair('fieldmindate', LStringValue);
     end;
 
-    if TMyCloudDataJSonHelper.TrySerializeDateTimeFieldValue(MetaData.MaximumDate, LStringValue) then
+    if TmyCloudDataJSonHelper.TrySerializeDateTimeFieldValue(MetaData.MaximumDate, LStringValue) then
     begin
       LJsonObject.AddPair('fieldmaxdate', LStringValue);
     end;
 
-    if TMyCloudDataJSonHelper.TrySerializeBooleanFieldValue(MetaData.Visible, LStringValue) then
+    if TmyCloudDataJSonHelper.TrySerializeBooleanFieldValue(MetaData.Visible, LStringValue) then
     begin
       LJsonObject.AddPair('fieldvisible', LStringValue);
     end;
 
-    if TMyCloudDataJSonHelper.TrySerializeBooleanFieldValue(MetaData.Enabled, LStringValue) then
+    if TmyCloudDataJSonHelper.TrySerializeBooleanFieldValue(MetaData.Enabled, LStringValue) then
     begin
       LJsonObject.AddPair('fieldenabled', LStringValue);
     end;
 
-    if TMyCloudDataJSonHelper.TrySerializeBooleanFieldValue(MetaData.Required, LStringValue) then
+    if TmyCloudDataJSonHelper.TrySerializeBooleanFieldValue(MetaData.Required, LStringValue) then
     begin
       LJsonObject.AddPair('fieldrequired', LStringValue);
     end;
@@ -2125,9 +2125,9 @@ begin
 
 end;
 
-{ TMyCloudDataJSonHelper }
+{ TmyCloudDataJSonHelper }
 
-class function TMyCloudDataJSonHelper.TryGetJSonProperty<T>(AJSonValue: TJSONValue; APath: string; ADefaultValue: T): T;
+class function TmyCloudDataJSonHelper.TryGetJSonProperty<T>(AJSonValue: TJSONValue; APath: string; ADefaultValue: T): T;
 begin
   try
     if ((AJSonValue is TJSONNull) or not AJSonValue.TryGetValue<T>(APath, Result)) then
@@ -2140,16 +2140,16 @@ begin
   end;
 end;
 
-class function TMyCloudDataJSonHelper.TryGetJSonProperty<T>(AJSonValue: TJSONValue; APath: string): T;
+class function TmyCloudDataJSonHelper.TryGetJSonProperty<T>(AJSonValue: TJSONValue; APath: string): T;
 begin
   Result := TryGetJSonProperty(AJSonValue, APath, default (T));
 end;
 
 {------------------------------------------------------------------------------}
 
-{ TMyCloudDataEntityFilter }
+{ TmyCloudDataEntityFilter }
 
-function TMyCloudDataEntityFilter.OperatorAsString(AOperator: TComparisonOperator): string;
+function TmyCloudDataEntityFilter.OperatorAsString(AOperator: TComparisonOperator): string;
 begin
   case AOperator of
     coEqual:
@@ -2177,7 +2177,7 @@ begin
   end;
 end;
 
-function TMyCloudDataEntityFilter.OperatorAsString(AOperator: TLogicalOperator): string;
+function TmyCloudDataEntityFilter.OperatorAsString(AOperator: TLogicalOperator): string;
 begin
   case AOperator of
     loAnd:
@@ -2189,7 +2189,7 @@ begin
   end;
 end;
 
-function TMyCloudDataEntityFilter.ToJSON: TJSONObject;
+function TmyCloudDataEntityFilter.ToJSON: TJSONObject;
 begin
   Result := TJSONObject.Create;
   Result.AddPair('field', FieldName);
@@ -2200,9 +2200,9 @@ end;
 
 {------------------------------------------------------------------------------}
 
-{ TMyCloudDataEntitySorting }
+{ TmyCloudDataEntitySorting }
 
-function TMyCloudDataEntitySorting.SortOrderAsString(ASortOrder: TSortDirection): string;
+function TmyCloudDataEntitySorting.SortOrderAsString(ASortOrder: TSortDirection): string;
 begin
   case ASortOrder of
     soAscending:
@@ -2212,7 +2212,7 @@ begin
   end;
 end;
 
-function TMyCloudDataEntitySorting.ToJSON: TJSONObject;
+function TmyCloudDataEntitySorting.ToJSON: TJSONObject;
 begin
   Result := TJSONObject.Create;
   Result.AddPair('field', FieldName);
@@ -2221,9 +2221,9 @@ end;
 
 {------------------------------------------------------------------------------}
 
-{ TMyCloudDataEntityCollection }
+{ TmyCloudDataEntityCollection }
 
-constructor TMyCloudDataEntities.Create(AOwner: TCustomMyCloudDataRESTClient; ATableId: integer; AFieldCollection: TMyCloudDataFields);
+constructor TmyCloudDataEntities.Create(AOwner: TCustomMyCloudDataRESTClient; ATableId: integer; AFieldCollection: TmyCloudDataFields);
 begin
   inherited Create(AOwner);
   FTableID := ATableId;
@@ -2231,30 +2231,30 @@ begin
   FFieldCollection := AFieldCollection;
 end;
 
-function TMyCloudDataEntities.CreateEntity: TMyCloudDataEntity;
+function TmyCloudDataEntities.CreateEntity: TmyCloudDataEntity;
 begin
-  Result := TMyCloudDataEntity.Create(Owner, TableID, FFieldCollection);
+  Result := TmyCloudDataEntity.Create(Owner, TableID, FFieldCollection);
   Items.Add(Result);
 end;
 
-destructor TMyCloudDataEntities.Destroy;
+destructor TmyCloudDataEntities.Destroy;
 begin
   inherited;
   FRemovedEntities.Free;
 end;
 
-function TMyCloudDataEntities.FromJSON(AJSONString: string): Boolean;
+function TmyCloudDataEntities.FromJSON(AJSONString: string): Boolean;
 var
   LObject: TJSONValue;
   LArray: TJSONArray;
-  LEntity: TMyCloudDataEntity;
+  LEntity: TmyCloudDataEntity;
 begin
   Result := True;
   LArray := TJSONObject.ParseJSONValue(AJSONString) as TJSONArray;
   try
     for LObject in LArray do
     begin
-      LEntity := TMyCloudDataEntity.Create(Owner, TableID, FFieldCollection);
+      LEntity := TmyCloudDataEntity.Create(Owner, TableID, FFieldCollection);
       if LEntity.FromJSON(LObject.ToJSON, FFieldCollection) then
       begin
         Items.Add(LEntity);
@@ -2271,9 +2271,9 @@ begin
   end;
 end;
 
-function TMyCloudDataEntities.GetEntity(AEntityId: int64): TMyCloudDataEntity;
+function TmyCloudDataEntities.GetEntity(AEntityId: int64): TmyCloudDataEntity;
 var
-  LEntity: TMyCloudDataEntity;
+  LEntity: TmyCloudDataEntity;
 begin
   Result := nil;
   for LEntity in Items do
@@ -2286,9 +2286,9 @@ begin
   end;
 end;
 
-procedure TMyCloudDataEntities.RemoveEntity(AEntityId: int64);
+procedure TmyCloudDataEntities.RemoveEntity(AEntityId: int64);
 var
-  LEntity: TMyCloudDataEntity;
+  LEntity: TmyCloudDataEntity;
 begin
   LEntity := GetEntity(AEntityId);
   if not(LEntity = nil) then
@@ -2298,9 +2298,9 @@ begin
   end;
 end;
 
-procedure TMyCloudDataEntities.Save;
+procedure TmyCloudDataEntities.Save;
 var
-  LEntity: TMyCloudDataEntity;
+  LEntity: TmyCloudDataEntity;
   LRemovedEntityId: int64;
 begin
   Owner.EnsureConnectedState;
@@ -2367,9 +2367,9 @@ end;
 
 {------------------------------------------------------------------------------}
 
-{ TMyCloudDataFieldMeta }
+{ TmyCloudDataFieldMeta }
 
-constructor TMyCloudDataFieldMetaData.Create;
+constructor TmyCloudDataFieldMetaData.Create;
 begin
   inherited;
   FTypedValues := TDictionary<string, string>.Create;
@@ -2378,21 +2378,21 @@ begin
   FRequired := False;
 end;
 
-destructor TMyCloudDataFieldMetaData.Destroy;
+destructor TmyCloudDataFieldMetaData.Destroy;
 begin
   if Assigned(FTypedValues) then
     FTypedValues.Free;
   inherited;
 end;
 
-function TMyCloudDataFieldMetaData.Equals(Obj: TObject): Boolean;
+function TmyCloudDataFieldMetaData.Equals(Obj: TObject): Boolean;
 var
-  AOther: TMyCloudDataFieldMetaData;
+  AOther: TmyCloudDataFieldMetaData;
 begin
   Result := False;
-  if (Obj is TMyCloudDataFieldMetaData) then
+  if (Obj is TmyCloudDataFieldMetaData) then
   begin
-    AOther := Obj as TMyCloudDataFieldMetaData;
+    AOther := Obj as TmyCloudDataFieldMetaData;
 
     Result := (LabelText = AOther.LabelText) and (DefaultValue = AOther.DefaultValue) and (Width = AOther.Width) and (Order = AOther.Order) and
       (Mask = AOther.Mask) and (Minimum = AOther.Minimum) and (Maximum = AOther.Maximum) and (MinimumDate = AOther.MinimumDate) and
@@ -2402,9 +2402,9 @@ begin
   end;
 end;
 
-{ TMyCloudDataBlob }
+{ TmyCloudDataBlob }
 
-function TMyCloudDataBlob.AsString: string;
+function TmyCloudDataBlob.AsString: string;
 begin
   if (HasData) then
   begin
@@ -2416,7 +2416,7 @@ begin
   end;
 end;
 
-procedure TMyCloudDataBlob.FromFile(AFileName: string);
+procedure TmyCloudDataBlob.FromFile(AFileName: string);
 var
   LFileStream: TFileStream;
 begin
@@ -2428,7 +2428,7 @@ begin
   end;
 end;
 
-function TMyCloudDataBlob.FromJSON(AJSONString: string): Boolean;
+function TmyCloudDataBlob.FromJSON(AJSONString: string): Boolean;
 var
   LJSonValue: TJSONValue;
 begin
@@ -2439,7 +2439,7 @@ begin
   try
     if LJSonValue.TryGetValue<string>('url', FUrl) then
     begin
-      FHasData := TMyCloudDataJSonHelper.TryGetJSonProperty<Boolean>(LJSonValue, 'hasdata', False);
+      FHasData := TmyCloudDataJSonHelper.TryGetJSonProperty<Boolean>(LJSonValue, 'hasdata', False);
       Result := True;
     end;
   finally
@@ -2448,7 +2448,7 @@ begin
 
 end;
 
-function TMyCloudDataBlob.GetStream: TStream;
+function TmyCloudDataBlob.GetStream: TStream;
 var
   LHttpClient: TRESTHTTP;
 begin
@@ -2477,7 +2477,7 @@ begin
   end;
 end;
 
-procedure TMyCloudDataBlob.SetStream(AStream: TStream);
+procedure TmyCloudDataBlob.SetStream(AStream: TStream);
 var
   LHttpClient: TRESTHTTP;
   LOutStream: TMemoryStream;
@@ -2518,7 +2518,7 @@ begin
   end;
 end;
 
-function TMyCloudDataBlob.ToFile(AFileName: string): Boolean;
+function TmyCloudDataBlob.ToFile(AFileName: string): Boolean;
 var
   LStream: TStream;
   LFileStream: TFileStream;
@@ -2545,35 +2545,35 @@ begin
   end;
 end;
 
-constructor TMyCloudDataModelCollectionBase<T>.Create(AOwner: TCustomMyCloudDataRESTClient);
+constructor TmyCloudDataModelCollectionBase<T>.Create(AOwner: TCustomMyCloudDataRESTClient);
 begin
   inherited Create(AOwner);
   FItems := nil;
 end;
 
-destructor TMyCloudDataModelCollectionBase<T>.Destroy;
+destructor TmyCloudDataModelCollectionBase<T>.Destroy;
 begin
   if Assigned(FItems) then
     FItems.Free;
   inherited;
 end;
 
-function TMyCloudDataModelCollectionBase<T>.GetEnumerator: TEnumerator<T>;
+function TmyCloudDataModelCollectionBase<T>.GetEnumerator: TEnumerator<T>;
 begin
   Result := Items.GetEnumerator;
 end;
 
-function TMyCloudDataModelCollectionBase<T>.GetItem(i: integer): T;
+function TmyCloudDataModelCollectionBase<T>.GetItem(i: integer): T;
 begin
   Result := Items[i];
 end;
 
-function TMyCloudDataModelCollectionBase<T>.GetItemCount: integer;
+function TmyCloudDataModelCollectionBase<T>.GetItemCount: integer;
 begin
   Result := Items.Count
 end;
 
-function TMyCloudDataModelCollectionBase<T>.GetItems: TObjectList<T>;
+function TmyCloudDataModelCollectionBase<T>.GetItems: TObjectList<T>;
 begin
   if FItems = nil then
   begin
@@ -2582,13 +2582,13 @@ begin
   Result := FItems;
 end;
 
-function TMyCloudDataModelCollectionBase<T>.LoadItems: TObjectList<T>;
+function TmyCloudDataModelCollectionBase<T>.LoadItems: TObjectList<T>;
 begin
   // The default behaviour is to just create a new TObjectList<T>
   Result := TObjectList<T>.Create(True);
 end;
 
-procedure TMyCloudDataModelCollectionBase<T>.Reset;
+procedure TmyCloudDataModelCollectionBase<T>.Reset;
 begin
   if Assigned(FItems) then
   begin
@@ -2598,14 +2598,14 @@ end;
 
 {------------------------------------------------------------------------------}
 
-{ TMyCloudDataEntityFilterCollection }
+{ TmyCloudDataEntityFilterCollection }
 
-function TMyCloudDataEntityFilters.Add(AFieldName: string; AValue: Variant; AComparisonOperator: TComparisonOperator;
+function TmyCloudDataEntityFilters.Add(AFieldName: string; AValue: Variant; AComparisonOperator: TComparisonOperator;
   ALogicalOperator: TLogicalOperator): integer;
 var
-  LFilter: TMyCloudDataEntityFilter;
+  LFilter: TmyCloudDataEntityFilter;
 begin
-  LFilter := TMyCloudDataEntityFilter.Create;
+  LFilter := TmyCloudDataEntityFilter.Create;
   LFilter.FieldName := AFieldName;
   LFilter.Value := AValue;
   LFilter.LogicalOperator := ALogicalOperator;
@@ -2615,13 +2615,13 @@ end;
 
 {------------------------------------------------------------------------------}
 
-{ TMyCloudDataEntitySortingCollection }
+{ TmyCloudDataEntitySortingCollection }
 
-function TMyCloudDataEntitySortingCollection.Add(AFieldName: string; AOrder: TSortDirection): integer;
+function TmyCloudDataEntitySortingCollection.Add(AFieldName: string; AOrder: TSortDirection): integer;
 var
-  LSorting: TMyCloudDataEntitySorting;
+  LSorting: TmyCloudDataEntitySorting;
 begin
-  LSorting := TMyCloudDataEntitySorting.Create;
+  LSorting := TmyCloudDataEntitySorting.Create;
   LSorting.FieldName := AFieldName;
   LSorting.SortDirection := AOrder;
   Result := Add(LSorting);
@@ -2629,11 +2629,11 @@ end;
 
 {------------------------------------------------------------------------------}
 
-{ TMyCloudDataTablePermissions }
+{ TmyCloudDataTablePermissions }
 
-function TMyCloudDataPermissions.IsSameAs(AOther: TMyCloudDataPermissions): Boolean;
+function TmyCloudDataPermissions.IsSameAs(AOther: TmyCloudDataPermissions): Boolean;
 var
-  LPermission: TMyCloudDataPermission;
+  LPermission: TmyCloudDataPermission;
 begin
   Result := False;
   if (Count = AOther.Count) then
@@ -2650,28 +2650,28 @@ begin
   end;
 end;
 
-class function TMyCloudDataPermissions.FromString(ASource: string): TMyCloudDataPermissions;
+class function TmyCloudDataPermissions.FromString(ASource: string): TmyCloudDataPermissions;
 begin
-  Result := TMyCloudDataPermissions.None;
+  Result := TmyCloudDataPermissions.None;
   Result.SetFromString(ASource);
 end;
 
-class function TMyCloudDataPermissions.None: TMyCloudDataPermissions;
+class function TmyCloudDataPermissions.None: TmyCloudDataPermissions;
 begin
-  Result := TMyCloudDataPermissions.Create;
+  Result := TmyCloudDataPermissions.Create;
 end;
 
-class function TMyCloudDataPermissions.ReadOnly: TMyCloudDataPermissions;
+class function TmyCloudDataPermissions.ReadOnly: TmyCloudDataPermissions;
 begin
-  Result := TMyCloudDataPermissions.FromString('R');
+  Result := TmyCloudDataPermissions.FromString('R');
 end;
 
-class function TMyCloudDataPermissions.ReadWrite: TMyCloudDataPermissions;
+class function TmyCloudDataPermissions.ReadWrite: TmyCloudDataPermissions;
 begin
-  Result := TMyCloudDataPermissions.FromString('CRUD');
+  Result := TmyCloudDataPermissions.FromString('CRUD');
 end;
 
-procedure TMyCloudDataPermissions.SetFromString(ASource: string);
+procedure TmyCloudDataPermissions.SetFromString(ASource: string);
 begin
   ASource := ASource.Trim.ToUpperInvariant;
   if ContainsStr(ASource, 'C') then
@@ -2684,7 +2684,7 @@ begin
     Add(pDelete);
 end;
 
-function TMyCloudDataPermissions.ToString: string;
+function TmyCloudDataPermissions.ToString: string;
 begin
   Result := '';
   if contains(pCreate) then
@@ -2699,9 +2699,9 @@ end;
 
 {------------------------------------------------------------------------------}
 
-{ TMyCloudDataTableShare }
+{ TmyCloudDataTableShare }
 
-constructor TMyCloudDataTableShare.Create(ATableId: integer; AEmail: string; APermissions: TMyCloudDataPermissions; IsNew: Boolean = True);
+constructor TmyCloudDataTableShare.Create(ATableId: integer; AEmail: string; APermissions: TmyCloudDataPermissions; IsNew: Boolean = True);
 begin
   FTableID := ATableId;
   FEmail := AEmail;
@@ -2713,7 +2713,7 @@ begin
   end;
 end;
 
-procedure TMyCloudDataTableShare.SetPermissions(const Value: TMyCloudDataPermissions);
+procedure TmyCloudDataTableShare.SetPermissions(const Value: TmyCloudDataPermissions);
 begin
   if not(FPermissions.IsSameAs(Value)) then
   begin
@@ -2724,11 +2724,11 @@ end;
 
 {------------------------------------------------------------------------------}
 
-{ TMyCloudDataTableShares }
+{ TmyCloudDataTableShares }
 
-procedure TMyCloudDataTableShares.Save;
+procedure TmyCloudDataTableShares.Save;
 var
-  LShare: TMyCloudDataTableShare;
+  LShare: TmyCloudDataTableShare;
 begin
   for LShare in Items do
   begin
@@ -2739,9 +2739,9 @@ begin
   end;
 end;
 
-procedure TMyCloudDataTableShares.SetShare(AEmail: string; APermissions: TMyCloudDataPermissions);
+procedure TmyCloudDataTableShares.SetShare(AEmail: string; APermissions: TmyCloudDataPermissions);
 var
-  LShare: TMyCloudDataTableShare;
+  LShare: TmyCloudDataTableShare;
 begin
   LShare := GetShare(AEmail);
   if LShare <> nil then
@@ -2750,12 +2750,12 @@ begin
   end
   else
   begin
-    LShare := TMyCloudDataTableShare.Create(FTableID, AEmail, APermissions);
+    LShare := TmyCloudDataTableShare.Create(FTableID, AEmail, APermissions);
     Items.Add(LShare);
   end;
 end;
 
-function TMyCloudDataTableShares.TryParseJSON(AJSONString: string; out AResult: TObjectList<TMyCloudDataTableShare>): Boolean;
+function TmyCloudDataTableShares.TryParseJSON(AJSONString: string; out AResult: TObjectList<TmyCloudDataTableShare>): Boolean;
 var
   LObject: TJSONValue;
   LArray: TJSONArray;
@@ -2763,16 +2763,16 @@ var
   LPermissions: string;
 begin
   Result := True;
-  AResult := TObjectList<TMyCloudDataTableShare>.Create;
+  AResult := TObjectList<TmyCloudDataTableShare>.Create;
   LArray := TJSONObject.ParseJSONValue(AJSONString) as TJSONArray;
   try
     for LObject in LArray do
     begin
-      LEmail := TMyCloudDataJSonHelper.TryGetJSonProperty<string>(LObject, 'email', '');
-      LPermissions := TMyCloudDataJSonHelper.TryGetJSonProperty<string>(LObject, 'permissions', '');
+      LEmail := TmyCloudDataJSonHelper.TryGetJSonProperty<string>(LObject, 'email', '');
+      LPermissions := TmyCloudDataJSonHelper.TryGetJSonProperty<string>(LObject, 'permissions', '');
       if LEmail <> '' then
       begin
-        AResult.Add(TMyCloudDataTableShare.Create(FTableID, LEmail, TMyCloudDataPermissions.FromString(LPermissions)));
+        AResult.Add(TmyCloudDataTableShare.Create(FTableID, LEmail, TmyCloudDataPermissions.FromString(LPermissions)));
       end
     end;
   finally
@@ -2780,15 +2780,15 @@ begin
   end;
 end;
 
-constructor TMyCloudDataTableShares.Create(AOwner: TCustomMyCloudDataRESTClient; ATableId: integer);
+constructor TmyCloudDataTableShares.Create(AOwner: TCustomMyCloudDataRESTClient; ATableId: integer);
 begin
   inherited Create(AOwner);
   FTableID := ATableId;
 end;
 
-function TMyCloudDataTableShares.GetShare(AEmail: string): TMyCloudDataTableShare;
+function TmyCloudDataTableShares.GetShare(AEmail: string): TmyCloudDataTableShare;
 var
-  LItem: TMyCloudDataTableShare;
+  LItem: TmyCloudDataTableShare;
 begin
   for LItem in Items do
   begin
@@ -2801,7 +2801,7 @@ begin
   Result := nil;
 end;
 
-function TMyCloudDataTableShares.LoadItems: TObjectList<TMyCloudDataTableShare>;
+function TmyCloudDataTableShares.LoadItems: TObjectList<TmyCloudDataTableShare>;
 begin
   try
     Result := nil;
@@ -2838,39 +2838,39 @@ begin
   end;
 end;
 
-procedure TMyCloudDataTableShares.RemoveShare(AEmail: string);
+procedure TmyCloudDataTableShares.RemoveShare(AEmail: string);
 begin
-  GetShare(AEmail).SetPermissions(TMyCloudDataPermissions.None);
+  GetShare(AEmail).SetPermissions(TmyCloudDataPermissions.None);
 end;
 
 {------------------------------------------------------------------------------}
 
-{ TMyCloudDataEntityQueryResult }
+{ TmyCloudDataEntityQueryResult }
 
-destructor TMyCloudDataEntityQueryResult.Destroy;
+destructor TmyCloudDataEntityQueryResult.Destroy;
 begin
   if Assigned(FResults) then
     FResults.Free;
   inherited;
 end;
 
-{ TMyCloudDataUser }
+{ TmyCloudDataUser }
 
-{ TMyCloudDataUser }
+{ TmyCloudDataUser }
 
-function TMyCloudDataUser.CanUseBlobFields: Boolean;
+function TmyCloudDataUser.CanUseBlobFields: Boolean;
 begin
   Result := FUserType <> utFree;
 end;
 
-destructor TMyCloudDataUser.Destroy;
+destructor TmyCloudDataUser.Destroy;
 begin
   if Assigned(FPermissions) then
     FPermissions.Free;
   inherited;
 end;
 
-function TMyCloudDataUser.FromJSON(ASource: string): Boolean;
+function TmyCloudDataUser.FromJSON(ASource: string): Boolean;
 var
   LJSonValue: TJSONValue;
   LUserIdAsString: string;
@@ -2883,14 +2883,14 @@ begin
 
   try
 
-    LUserIdAsString := TMyCloudDataJSonHelper.TryGetJSonProperty(LJSonValue, 'id', '');
-    LStatusAsString := TMyCloudDataJSonHelper.TryGetJSonProperty(LJSonValue, 'status', '');
-    LPermissionsAsString := TMyCloudDataJSonHelper.TryGetJSonProperty(LJSonValue, 'permissions', '');
+    LUserIdAsString := TmyCloudDataJSonHelper.TryGetJSonProperty(LJSonValue, 'id', '');
+    LStatusAsString := TmyCloudDataJSonHelper.TryGetJSonProperty(LJSonValue, 'status', '');
+    LPermissionsAsString := TmyCloudDataJSonHelper.TryGetJSonProperty(LJSonValue, 'permissions', '');
 
-    FEmail := TMyCloudDataJSonHelper.TryGetJSonProperty(LJSonValue, 'email', '');
-    FFirstName := TMyCloudDataJSonHelper.TryGetJSonProperty(LJSonValue, 'firstname', '');
-    FLastName := TMyCloudDataJSonHelper.TryGetJSonProperty(LJSonValue, 'name', '');
-    FCompany := TMyCloudDataJSonHelper.TryGetJSonProperty(LJSonValue, 'company', '');
+    FEmail := TmyCloudDataJSonHelper.TryGetJSonProperty(LJSonValue, 'email', '');
+    FFirstName := TmyCloudDataJSonHelper.TryGetJSonProperty(LJSonValue, 'firstname', '');
+    FLastName := TmyCloudDataJSonHelper.TryGetJSonProperty(LJSonValue, 'name', '');
+    FCompany := TmyCloudDataJSonHelper.TryGetJSonProperty(LJSonValue, 'company', '');
 
     LJSonValue.Free;
 
@@ -2903,7 +2903,7 @@ begin
     if (LStatusAsString = 'admin') then
       FUserType := utAdmin;
 
-    FPermissions := TMyCloudDataPermissions.FromString(LPermissionsAsString);
+    FPermissions := TmyCloudDataPermissions.FromString(LPermissionsAsString);
 
     if (TryStrToInt(LUserIdAsString, FUserId)) and Assigned(FPermissions) then
     begin
@@ -2923,7 +2923,7 @@ begin
 
 end;
 
-function TMyCloudDataUser.UserTypeAsString: string;
+function TmyCloudDataUser.UserTypeAsString: string;
 begin
   if (FUserType = utFree) then
     Result := 'free';

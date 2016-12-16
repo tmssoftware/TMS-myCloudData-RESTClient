@@ -464,7 +464,7 @@ begin
         begin
           FCurrentUser.Free;
         end;
-        FCurrentUser := TMyCloudDataUser.Create;
+        FCurrentUser := TmyCloudDataUser.Create;
         if FCurrentUser.FromJSON(Request.Response.Content) then
         begin
           Result := true;

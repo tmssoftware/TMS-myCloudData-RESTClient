@@ -51,18 +51,18 @@ type
     procedure GenderFilterRadioGroupClick(Sender: TObject);
   private
     FIsConnected: Boolean;
-    FSelectedContact: TMyCloudDataEntity;
-    FContacstTable: TMyCloudDataTable;
-    FContacts: TMyCloudDataEntities;
+    FSelectedContact: TmyCloudDataEntity;
+    FContacstTable: TmyCloudDataTable;
+    FContacts: TmyCloudDataEntities;
     MyCloudData: TVCLmyCloudDataRESTClient;
 
-    procedure SetSelectedContact(AContactEntity: TMyCloudDataEntity);
+    procedure SetSelectedContact(AContactEntity: TmyCloudDataEntity);
     function GetApplicationInitialized: Boolean;
     property IsConnected: Boolean read FIsConnected write FIsConnected;
     property ApplicationInitialized: Boolean read GetApplicationInitialized;
-    property ContactsTable: TMyCloudDataTable read FContacstTable write FContacstTable;
-    property Contacts: TMyCloudDataEntities read FContacts write FContacts;
-    property SelectedContact: TMyCloudDataEntity read FSelectedContact write SetSelectedContact;
+    property ContactsTable: TmyCloudDataTable read FContacstTable write FContacstTable;
+    property Contacts: TmyCloudDataEntities read FContacts write FContacts;
+    property SelectedContact: TmyCloudDataEntity read FSelectedContact write SetSelectedContact;
     function BlobFieldsAreEnabled: Boolean;
     procedure InitializeComponents;
     procedure ToggleComponents;
@@ -73,7 +73,7 @@ type
     procedure ClearContactDetails;
     procedure LoadContactDetails;
     procedure LoadContactImage;
-    procedure UpdateContactFromUI(AContact: TMyCloudDataEntity);
+    procedure UpdateContactFromUI(AContact: TmyCloudDataEntity);
     procedure ShowErrorMessage(AMessage: string; AError: Exception);
   public
     destructor Destroy; override;
@@ -97,7 +97,7 @@ implementation
 
 procedure TContactsDemoForm.AddContactButtonClick(Sender: TObject);
 var
-  LContact: TMyCloudDataEntity;
+  LContact: TmyCloudDataEntity;
 begin
   LContact := ContactsTable.Entities.CreateEntity;
   UpdateContactFromUI(LContact);
@@ -128,11 +128,11 @@ end;
 
 procedure TContactsDemoForm.ContactsListBoxClick(Sender: TObject);
 var
-  LContact: TMyCloudDataEntity;
+  LContact: TmyCloudDataEntity;
 begin
   if ContactsListBox.ItemIndex >= 0 then
   begin
-    LContact := ContactsListBox.items.Objects[ContactsListBox.ItemIndex] as TMyCloudDataEntity;
+    LContact := ContactsListBox.items.Objects[ContactsListBox.ItemIndex] as TmyCloudDataEntity;
     if not(LContact = nil) then
     begin
       SelectedContact := LContact;
@@ -263,7 +263,7 @@ end;
 
 procedure TContactsDemoForm.InsertPictureButtonClick(Sender: TObject);
 var
-  LPictureBlobField: TMyCloudDataBlob;
+  LPictureBlobField: TmyCloudDataBlob;
 begin
   if SelectedContact <> nil then
   begin
@@ -293,7 +293,7 @@ end;
 
 procedure TContactsDemoForm.LoadContactImage;
 var
-  LPictureBlobField: TMyCloudDataBlob;
+  LPictureBlobField: TmyCloudDataBlob;
   LGraphic: TGraphic;
 begin
   ContactImage.Picture := nil;
@@ -361,7 +361,7 @@ end;
 
 procedure TContactsDemoForm.RemovePictureButtonClick(Sender: TObject);
 var
-  LPictureBlobField: TMyCloudDataBlob;
+  LPictureBlobField: TmyCloudDataBlob;
 begin
   if SelectedContact <> nil then
   begin
@@ -376,7 +376,7 @@ begin
   end;
 end;
 
-procedure TContactsDemoForm.SetSelectedContact(AContactEntity: TMyCloudDataEntity);
+procedure TContactsDemoForm.SetSelectedContact(AContactEntity: TmyCloudDataEntity);
 begin
   if not(AContactEntity = nil) then
   begin
@@ -422,7 +422,7 @@ end;
 
 procedure TContactsDemoForm.UpdateContactButtonClick(Sender: TObject);
 var
-  LContact: TMyCloudDataEntity;
+  LContact: TmyCloudDataEntity;
 begin
   LContact := ContactsTable.Entities.GetEntity(SelectedContact.ID);
   if LContact <> nil then
@@ -433,7 +433,7 @@ begin
   end;
 end;
 
-procedure TContactsDemoForm.UpdateContactFromUI(AContact: TMyCloudDataEntity);
+procedure TContactsDemoForm.UpdateContactFromUI(AContact: TmyCloudDataEntity);
 begin
   AContact.SetValue('Name', NameTextBox.Text);
   AContact.SetValue('EmailAddress', EmailTextBox.Text);
@@ -457,7 +457,7 @@ end;
 
 procedure TContactsDemoForm.UpdateContactsList;
 var
-  LContact: TMyCloudDataEntity;
+  LContact: TmyCloudDataEntity;
   LIndexCounter: integer;
   LSelectedContactFound: Boolean;
 begin
